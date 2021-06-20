@@ -33,5 +33,7 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+   'POST /users/login': 'UserController.login',
+
 
 };
