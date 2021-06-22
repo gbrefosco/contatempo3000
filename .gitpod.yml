@@ -1,6 +1,8 @@
 tasks:
-  - init: npm i
-    command: >
+  - name: API
+    init: |
       cd contatempo3000-api
-      npm i sails -g
-      npm i &&
+      npm install
+      npm install sails -g
+    command: sails lift
+  
