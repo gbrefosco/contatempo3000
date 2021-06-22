@@ -1,5 +1,6 @@
 tasks:
-  - init: cd contatempo3000-api
+  - init: npm i
     command: >
-      npm i &&
+      cd contatempo3000-api
       npm i sails -g
+      npm i &&
