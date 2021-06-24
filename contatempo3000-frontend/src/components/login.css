@@ -1,7 +1,8 @@
 .titulo {
+    flex: 1;
     position: relative;
-    width: 720px;
-    height: 660px;
+    width: 50%;
+    height: 100%;
     background: #F7F8FA;
 }
 
@@ -41,8 +42,8 @@
 
 .PLogin {
     position: absolute;
-    width: 647px;
-    height: 657px;
+    width: 50%;
+    height: 100%;
     left: 700px;
     top: 1.5px;
     border-radius: 5px;
