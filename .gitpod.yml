@@ -4,5 +4,4 @@ tasks:
       npm install sails -g &&
       cd contatempo3000-api &&
       npm install
-    command: sails lift
   
