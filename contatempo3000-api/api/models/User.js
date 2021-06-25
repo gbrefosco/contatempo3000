@@ -9,7 +9,7 @@ module.exports = {
 
   attributes: {
 
-    fullName: {
+    nickname: {
       type: 'string',
       maxLength: 100
     },
