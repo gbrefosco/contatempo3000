@@ -1,6 +1,5 @@
 tasks:
   - name: Instala Sails
     init: npm install sails -g
-  - name: Instala Pacotes
-    init: npm install
+
   
