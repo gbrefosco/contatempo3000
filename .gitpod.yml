@@ -1,5 +1,5 @@
 tasks:
   - name: Instala Sails
-    init: npm install sails -g
+    init: npm i sails -g && cd contatempo3000-api && npm i
 
   
