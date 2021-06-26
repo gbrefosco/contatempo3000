@@ -1,10 +1,23 @@
-import Login from './components/login';
+import React from "react";
+
+import SideNavMenu from "./components/global/sideNav";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Graphics from "./pages/Graphics";
+import Profile from "./pages/Profile";
 
 function App() {
     return (
-        <div className="App">
-            <Login />
-        </div>
+        <>
+            <Router>
+                <SideNavMenu />
+                <Switch>
+                    <Route path="/" exact component={Home}/>
+                    <Route path="/graphics" component={Graphics}/>
+                    <Route path="/profile" component={Profile}/>
+                </Switch>       
+            </Router>
+        </>
     );
 }
 
