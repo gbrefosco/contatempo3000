@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './indice.css';
 import Menu from './sidebar.js';
 

@@ -9,6 +9,7 @@ export default function Profile(props){
             <div className="prof">
                 Your Profile
             </div>
+
             <div style={{textAlign:'center',position:'absolute',left:'45%',top:'50%'}}>
                 <p style={{color:'#7D53D4',fontSize:'25px'}}>{props.username}</p>
             </div>

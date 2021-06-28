@@ -12,14 +12,12 @@
     height: 56px;
     left: 180px;
     top: 65px;
-
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 48px;
     line-height: 56px;
     text-align: center;
-
     color: #000000;
 }
 
@@ -29,14 +27,12 @@
     height: 148px;
     left: 40px;
     top: 215px;
-
     font-family: Roboto;
     font-style: normal;
     font-weight:lighter;
     font-size: 36px;
     line-height: 42px;
     text-align: center;
-
     color: #000000;
 }
 
@@ -53,28 +49,40 @@
 .PLogin .login_label {
     position: absolute;
     left: 37.23%;
-    right: 40.88%;
-    top: 15%;
+    right: 38%;
+    top: 10%;
     bottom: 75.12%;
-
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
     font-size: 48px;
-    line-height: 56px;
+    line-height: 58px;
     text-align: center;
-
     color: #FFFFFF;
+}
+
+.PLogin .email_input {
+    position: absolute;
+    width: 400px;
+    height: 50px;
+    left: 20.54%;
+    right: 17.52%;
+    top: 27%;
+    bottom: 57.56%;
+    background: #E5E5E5;
+    border: 1.5px solid #2A004B;
+    box-sizing: border-box;
+    border-radius: 10px;
 }
 
 .PLogin .login_input {
     position: absolute;
     width: 400px;
+    height: 50px;
     left: 20.54%;
     right: 17.52%;
-    top: 34.02%;
-    bottom: 57.56%;
-
+    top: 42%;
+    bottom: 50%;
     background: #E5E5E5;
     border: 1.5px solid #2A004B;
     box-sizing: border-box;
@@ -84,11 +92,11 @@
 .PLogin .pass_input {
     position: absolute;
     width: 400px;
+    height: 50px;
     left: 20.54%;
     right: 17.52%;
-    top: 50%;
+    top: 57%;
     bottom: 41.59%;
-
     background: #E5E5E5;
     border: 1.5px solid #2A004B;
     box-sizing: border-box;
@@ -100,31 +108,13 @@
     width: 380px;
     left: 22.54%;
     right: 17.52%;
-    top: 72.32%;
-    bottom: 19.27%;
-
+    top: 75%;
+    bottom: 15%;
     background: #2A004B;
     border-radius: 5px;
 }
 
-.PLogin a {
-    position: absolute;
-    left: 15.52%;
-    right: 45.2%;
-    top: 61%;
-    bottom: 37.44%;
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 21px;
-    text-align: center;
-
-    color: #FFFFFF;
-}
-
-.PLogin .signUp {
+.PLogin .logar {
     position: absolute;
     left: 17.15%;
     right: 30%;
