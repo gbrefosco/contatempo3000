@@ -1,6 +1,10 @@
 tasks:
   - name: API
-    prebuild: cd contatempo3000-api && npm i && npm i sails -g
-    command: fish
+    init: cd contatempo3000-api && npm i
+    command: >
+      npm i sails -g &&
+      fish
+  - name: FRONTEND
+    init: cd contatempo3000-frontend && npm i
 
   
