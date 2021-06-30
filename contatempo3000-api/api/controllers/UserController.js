@@ -5,6 +5,9 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+
+const nodemailer = require('nodemailer');
+
 module.exports = {
     async login(req, res){
         try {
@@ -22,11 +25,40 @@ module.exports = {
             sails.log.warn('login não autorizado!');
             res.negotiate();
         }
+    },
 
+    async recoverPassword(req ,res){
+        try {
+            let userId = req.params.id;            
+            if (!userId) throw new Error('Usuário não informado!')
 
+            let user = User.findOne(userId);
+            if (!user) throw new Error('Usuário não encontrado!')
+            
+            let transporter = nodemailer.createTransport(transport[ defaults]);
 
+            let text = `
+                Olá,
+                Sua senha é ${user.password}
+            `;
+
+            let message = {
+                from: 'taschezeit@gmail.com',
+                to: user.email,
+                subject: 'TascheZeit Password Recovery',
+                text
+            };
+
+            transporter.sendMail(message)
+                .then(res.ok())
+                .catch(res.negotiate());
+
+        } catch (error) {
+            sails.log.warn('recoverPassword.failed: '+error);
+            res.negotiate();
+        }
     }
-  
-
 };
+
+
 
