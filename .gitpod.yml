@@ -1,8 +1,6 @@
 tasks:
   - name: API
-    init: >
-      sudo npm i sails -g &&
-      cd contatempo3000-api &&
-      npm i
+    init: sudo npm i sails -g && cd contatempo3000-api && npm i
+    command: fish
 
   
