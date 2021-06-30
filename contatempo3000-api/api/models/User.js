@@ -9,26 +9,23 @@ module.exports = {
 
   attributes: {
 
-    fullName: {
-      type: 'string',
-      maxLength: 100
-    },
-
     login: {
       type: 'string',
-      maxLength: 100,
-      required: true
+      maxLength: 69,
+      columnName: 'NICKNAME'
     },
 
     password: {
       type: 'string',
-      maxLength: 100,
-      required: true
+      maxLength: 69,
+      required: true,
+      columnName: 'PASSWORD'
     },
 
     email: {
       type: 'string',
-      maxLength: 100
+      maxLength: 69,
+      columnName: 'EMAIL'
     },
 
     times: {
