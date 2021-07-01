@@ -1,14 +1,15 @@
 tasks:
   - name: API
-    init: cd contatempo3000-api
-    command: >
-      npm i sails -g &&
-      npm i &&
+    command: |
+      cd contatempo3000-api
+      npm i sails -g
+      npm i
       fish
   - name: FRONTEND
-    init: cd contatempo3000-frontend
-    command: >
-      npm i &&
+    command: |
+      cd contatempo3000-frontend
+      npm i
       fish
+    openMode: split-right
 
   
