@@ -11,22 +11,26 @@ module.exports = {
     
     start: {
       type: 'string',
-      required: true
+      required: true,
+      columnName: 'HOUR_START'
     },
 
     end: {
       type: 'string',
-      required: true
+      required: true,
+      columnName: 'HOUR_STOP'
     },
 
     task: {
       model: 'task',
-      required: true
+      required: true,
+      columnName: 'ACTIVITY_ID'
     },
 
     user: {
       model: 'user',
-      required: true
+      required: true,
+      columnName: 'USER_ID'
     },
 
 
