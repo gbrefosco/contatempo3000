@@ -7,32 +7,26 @@
 
 module.exports = {
 
+  tableName: 'ACTIVITY',
+
   attributes: {
-
-
-    tableName: 'ACTIVITY',
-
-    attributes: {
-      name: {
-        type: 'string',
-        required: true,
-        maxLength: 69,
-        columnName: 'ACTIVITY_NAME'
-      },
-  
-      note: {
-        type: 'string',
-        maxLength: 69,
-        columnName: 'NOTE'
-      },
-  
-      time: {
-        collection: 'time',
-        via: 'task',
-      }
-  
+    name: {
+      type: 'string',
+      required: true,
+      maxLength: 69,
+      columnName: 'ACTIVITY_NAME'
     },
-  },
 
+    note: {
+      type: 'string',
+      maxLength: 69,
+      columnName: 'NOTE'
+    },
+
+    time: {
+      collection: 'time',
+      via: 'task',
+    }
+  },
 };
 

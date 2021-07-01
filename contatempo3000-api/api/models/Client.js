@@ -8,17 +8,12 @@
 module.exports = {
 
   attributes: {
-
-    attributes: {
-      name: {
-        type: 'string',
-        maxLength: 69,
-        required: true,
-        columnName:'CLIENT_NAME'
-      }
-    },
-
+    name: {
+      type: 'string',
+      maxLength: 69,
+      required: true,
+      columnName:'CLIENT_NAME'
+    }
   },
-
 };
 
