@@ -12,18 +12,18 @@ module.exports = {
     async login(req, res){
         try {
             const { login, password } = req.body;
-    
+            
             const user = await User.findOne({ login });
 
-            if (user.password == password) {
-                res.ok();
+            if (!!user && user.password == password) {
+                return res.ok();
             } else {
-                throw new Error('login não autorizado!');
+                throw new Error('Login não encontrado ou senha incorreta!');
             }
             
-        } catch (error) {
-            sails.log.warn('login não autorizado!');
-            res.negotiate();
+        } catch (err) {
+            sails.log.warn(err);
+            return res.negotiate(err);
         }
     },
 
