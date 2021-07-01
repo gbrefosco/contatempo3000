@@ -1,10 +1,14 @@
 tasks:
   - name: API
-    init: cd contatempo3000-api && npm i
+    init: cd contatempo3000-api
     command: >
       npm i sails -g &&
+      npm i &&
       fish
   - name: FRONTEND
-    init: cd contatempo3000-frontend && npm i
+    init: cd contatempo3000-frontend
+    command: >
+      npm i &&
+      fish
 
   
