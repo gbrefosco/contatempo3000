@@ -25,7 +25,7 @@ module.exports = {
 
     time: {
       collection: 'time',
-      via: 'task',
+      via: 'activity',
     }
   },
 };

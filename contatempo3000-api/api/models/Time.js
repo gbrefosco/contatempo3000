@@ -21,8 +21,8 @@ module.exports = {
       columnName: 'HOUR_STOP'
     },
 
-    task: {
-      model: 'task',
+    activity: {
+      model: 'activity',
       required: true,
       columnName: 'ACTIVITY_ID'
     },
