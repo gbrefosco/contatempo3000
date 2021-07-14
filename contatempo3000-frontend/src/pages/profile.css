@@ -1,0 +1,24 @@
+.prof {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 5%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 60px;
+    line-height: 84px;
+    color: #7D53D4;
+}
+
+.caixa {
+    position: absolute;
+    width: 25%;
+    height: 9%;
+    left: 20%;
+    top: 70%;
+    background: #E7E7E7;
+    border: 1px solid #4914B6;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
