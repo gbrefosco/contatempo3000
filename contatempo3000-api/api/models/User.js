@@ -28,6 +28,18 @@ module.exports = {
       columnName: 'EMAIL'
     },
 
+    secretAnswer: {
+      type: 'string',
+      maxLength: 269,
+      columnName: 'SECRETANSWER'
+    },
+
+    secretQuestion: {
+      type: 'string',
+      maxLength: 269,
+      columnName: 'SECRETQUESTION'
+    },
+
     times: {
       collection: 'time',
       via: 'user'
