@@ -7,6 +7,8 @@
 
 module.exports = {
 
+  tableName: 'CLIENT',
+
   attributes: {
     name: {
       type: 'string',
