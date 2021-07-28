@@ -7,8 +7,10 @@
 
 module.exports = {
 
+  tableName: 'HOURSY',
+
   attributes: {
-    
+
     start: {
       type: 'string',
       required: true,

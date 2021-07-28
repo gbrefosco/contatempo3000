@@ -10,6 +10,7 @@ module.exports = {
   tableName: 'ACTIVITY',
 
   attributes: {
+    
     name: {
       type: 'string',
       required: true,
