@@ -1,7 +1,7 @@
 import React from 'react';
 import './signup.css';
 
-export default function SignUp(){
+export default function SignUp(props){
     return (
         <>
         <div className="titulo">
@@ -13,13 +13,14 @@ export default function SignUp(){
                 <label className="login_label">Sign Up</label>
                 <input className="email_input" type="email" placeholder="Enter a valid email"></input>
                 <input className="pass_input" type="password" placeholder="Enter a valid password"></input>
+                <input className="re_pass_input" type="password" placeholder="Re-enter a valid password"></input>
                 <input className="login_input" type="text" placeholder="Enter a valid username"></input>
 
                 <button className="continue">Create account</button>
 
                 <p className="logar">
                     Already have an account?
-                    <button>Login</button>
+                    <button onClick={()=>props.setLogin(true)}>Login</button>
                 </p>
         </div>
 

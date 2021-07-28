@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Home.css';
-import Menu from './sidebar.js';
+//import Menu from './sidebar.js';
 
 export default function Home()
 {
@@ -40,7 +40,6 @@ export default function Home()
             <p style={{color:'#2A004B',position:'absolute',top:'28%',left:'80%',fontSize:'26px'}}>
                 Time: {timer}
             </p>
-            <Menu />
             <div className="TimeList">
 
             </div>

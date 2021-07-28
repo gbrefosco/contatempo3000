@@ -50,12 +50,15 @@
 .PLogin .login_label {
     position: absolute;
     align-content: center;
+    font-size: 50px;
     top: 15%;
+    left: 40%;
 }
 
 .PLogin .login_input {
     position: absolute;
-    width: 400px;
+    width: 60%;
+    height: 5%;
     left: 20.54%;
     right: 17.52%;
     top: 34.02%;
@@ -69,7 +72,8 @@
 
 .PLogin .pass_input {
     position: absolute;
-    width: 400px;
+    width: 60%;
+    height: 5%;
     left: 20.54%;
     right: 17.52%;
     top: 50%;

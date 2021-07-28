@@ -1,6 +1,6 @@
 import React from 'react';
 import './graphs.css';
-import Menu from './sidebar.js';
+//import Menu from './sidebar.js';
 
 export default function Graphics(){
     const donut = 'https://s3-alpha-sig.figma.com/img/0e66/1139/25a48ba56c3cc3162d1d481173a1ca15?Expires=1625443200&Signature=UukY9snSDI-J~zVQBzET3qdjdrmLdE~-fTkbbSyxrzp5Vz7JjVSTfvKP25MMszkuTpz4KA2VqwnXfuE7lAY63G8mOLhTKg-Sq6bwYmWJHv~Fbe1oSo3~WrHAQg5ACRIxEjCs~UeTU6j7pQYnZ-tY~7oWE7CJWPAUmvsEVGi-TdE0ANkHFZJfUlWGEBBSu5qC515tblrMiEVCRwUuKsg8E24d5BeOOv2oqns6Xa6E-sdasjX~NOVs-LcrlgjPDQ-i0n4j3qhPRH9nS56mwxB0DI7iV51Ahp5k6yQRFkxcE8ZtiD2uUWZywtVoOpGnBjiCPYsn6h04X~DniY52L2KpdA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'
@@ -10,7 +10,6 @@ export default function Graphics(){
 
     return(
         <>
-            <Menu />
             <div className="upper">
                 Select a graph
             </div>
