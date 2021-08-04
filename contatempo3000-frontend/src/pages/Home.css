@@ -1,60 +1,16 @@
-.TimeList {
-    position: absolute;
-    width: 984px;
-    height: 370px;
-    left: 244px;
-    top: 255px;
-    background: #F7F8FA;
-    border: 1px solid #2A004B;
-    box-sizing: border-box;
-    border-radius: 5px;
-}
-
 .actualDate {
-    position: absolute;
     width: 100%;
+    margin: 15px 0;
     text-align: center;
-    top: 5%;
     font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 72px;
-    line-height: 84px;
+    font-size: 60px;
     color: #7D53D4;
 }
 
-.btNew {
-    position: absolute;
+.btn {
     width: 175px;
     height: 52px;
     left: 18%;
-    top: 30%;
-    background: #2A004B;
-    border-radius: 5px;
-}
-.btStart {
-    position: absolute;
-    width: 175px;
-    height: 52px;
-    left: 33%;
-    top: 30%;
-    background: #2A004B;
-    border-radius: 5px;
-}
-.btStop {
-    position: absolute;
-    width: 175px;
-    height: 52px;
-    left: 48%;
-    top: 30%;
-    background: #2A004B;
-    border-radius: 5px;
-}
-.btFim {
-    position: absolute;
-    width: 175px;
-    height: 52px;
-    left: 63%;
     top: 30%;
     background: #2A004B;
     border-radius: 5px;

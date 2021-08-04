@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./sideNav.css";
 
 import * as AiIcons from "react-icons/ai";
 
-function SideNavMenu() {
+const SideNavMenu = (props) => {
+
+    const [inactive, setInactive] = useState(false);
+
+    useEffect(() => {
+        props.onCollapse(inactive);
+    });
 
     function menuBtnChange() {
         let sidebar = document.querySelector(".sidebar");
@@ -18,6 +24,7 @@ function SideNavMenu() {
     function closeBtnHandleClick() {
         let sidebar = document.querySelector(".sidebar");
         sidebar.classList.toggle("open");
+        setInactive(!inactive);
         menuBtnChange();
     }
 

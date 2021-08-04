@@ -11,28 +11,26 @@ export default function Home() {
         setRunning(false);
     };
 
+    function openNewTime() {}
+
     return (
         <>
             <div className="actualDate">
                 {date.toDateString()}
             </div>
 
-            <button className="btNew">
-                <h2 style={{ color: '#fff' }}>New</h2>
+            <button className="btn" id="btnNewTime" onClick={() => openNewTime()}>
+                New
             </button>
-            <button className="btStart" onClick={() => setRunning(true)}>
-                <h2 style={{ color: '#fff' }}>Start</h2>
+            <button className="btn" id="btnStartTime" onClick={() => setRunning(true)}>
+                Start
             </button>
-            <button className="btStop" onClick={() => stopTimer()}>
-                <h2 style={{ color: '#fff' }}>Stop</h2>
+            <button className="btn" id="btnStopTime" onClick={() => stopTimer()}>
+                Stop
             </button>
-            <button className="btFim" onClick={() => setTimer(0.00)}>
-                <h2 style={{ color: '#fff' }}>Finish</h2>
+            <button className="btn" id="btnFinishTime" onClick={() => setTimer(0.00)}>
+                Finish
             </button>
-            <p style={{ color: '#2A004B', position: 'absolute', top: '28%', left: '80%', fontSize: '26px' }}>
-                Time: {timer}
-            </p>
-
         </>
     );
 }
