@@ -48,26 +48,26 @@
 
 .PLogin .login_label {
     position: absolute;
-    left: 37.23%;
-    right: 38%;
+    left: 35%;
+    right: 35%;
     top: 10%;
     bottom: 75.12%;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
-    font-size: 48px;
-    line-height: 58px;
-    text-align: center;
+    font-size: 46px;
+    line-height: 55px;
     color: #FFFFFF;
+    text-align: start;
 }
 
 .PLogin .email_input {
     position: absolute;
-    width: 400px;
-    height: 50px;
+    width: 50%;
+    height: 30%;
     left: 20.54%;
     right: 17.52%;
-    top: 27%;
+    top: 40%;
     bottom: 57.56%;
     background: #E5E5E5;
     border: 1.5px solid #2A004B;
@@ -81,8 +81,7 @@
     height: 50px;
     left: 20.54%;
     right: 17.52%;
-    top: 42%;
-    bottom: 50%;
+    top: 50%;
     background: #E5E5E5;
     border: 1.5px solid #2A004B;
     box-sizing: border-box;
@@ -95,8 +94,7 @@
     height: 50px;
     left: 20.54%;
     right: 17.52%;
-    top: 57%;
-    bottom: 41.59%;
+    top: 75%;
     background: #E5E5E5;
     border: 1.5px solid #2A004B;
     box-sizing: border-box;
@@ -109,8 +107,7 @@
     height: 50px;
     left: 20.54%;
     right: 17.52%;
-    top: 66%;
-    bottom: 41.59%;
+    top: 60%;
     background: #E5E5E5;
     border: 1.5px solid #2A004B;
     box-sizing: border-box;

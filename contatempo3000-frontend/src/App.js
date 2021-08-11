@@ -6,14 +6,14 @@ import Graphics from "./pages/Graphics";
 import Profile from "./pages/Profile";
 import SignUp from "./components/singIn/signup";
 import Login from "./components/singIn/login";
-
+//<SideNavMenu />
 function App() {
     const [logar,setLogar]=useState(false)
-    const paginas = ()=>{
+    const paginas = 
         (
             <>
                 <Router>
-                    <SideNavMenu />
+                    
                     <Switch>
                         <Route path="/" exact component={Home}/>
                         <Route path="/graphics" component={Graphics}/>
@@ -24,11 +24,11 @@ function App() {
                 </Router>
             </>
         );
-    }
+    
 
     return (
         <>
-            {!logar?<Login logar={logar} setLogar={setLogar}/>:paginas()}
+            {paginas}
         </>
     );
 }

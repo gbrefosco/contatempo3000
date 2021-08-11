@@ -1,7 +1,7 @@
 import React from 'react';
 import './signup.css';
 
-export default function SignUp(props){
+export default function SignUp(){
     return (
         <>
         <div className="titulo">
@@ -20,7 +20,7 @@ export default function SignUp(props){
 
                 <p className="logar">
                     Already have an account?
-                    <button onClick={()=>props.setLogin(true)}>Login</button>
+                    <button>Login</button>
                 </p>
         </div>
 
