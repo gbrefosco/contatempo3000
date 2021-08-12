@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap');
+* {
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
 .actualDate {
     width: 100%;
     margin: 15px 0;
@@ -8,10 +14,14 @@
 }
 
 .btn {
+    margin: 150px;
     width: 175px;
     height: 52px;
     left: 18%;
     top: 30%;
-    background: #2A004B;
+    background: linear-gradient(#7D53D4, #4110a1, #200358);
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
     border-radius: 5px;
 }
