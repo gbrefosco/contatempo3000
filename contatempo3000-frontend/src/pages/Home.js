@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Button, TextField, Toolbar, Typography, makeStyles, InputBase, alpha } from '@material-ui/core';
+import api from '../services/api';
 
 import './Home.css';
 
@@ -56,12 +57,22 @@ export default function Home() {
                 },
             },
         },
+        addProjectOrClient: {
+            position: 'absolute',
+            width: 690,
+            height: 200,
+            backgroundColor: theme.palette.background.default,
+            border: '#7D53D4',
+            boxShadow: theme.shadows[5],
+            padding: theme.spacing(2, 4, 3),
+        }
     }));
 
     const [timer, setTimer] = useState(0.00);
     const [running, setRunning] = useState(false);
     const [modalTimeAdd, setModalTimeAdd] = useState(false);
     const [modalProjectOrClientAdd, setModalProjectOrClientAdd] = useState(false);
+    const [modalAddProjectOrClient, setModalAddProjectOrClient] = useState(false);
     const [modalStyle] = useState(getModalStyle);
     const classes = useStyles();
 
@@ -75,6 +86,10 @@ export default function Home() {
 
     const closeAddProjectOrClient = () => {
         setModalProjectOrClientAdd(false)
+    }
+
+    const handleCloseAddProjectOrClient = () => {
+        setModalAddProjectOrClient(false);
     }
 
     function getModalStyle() {
@@ -104,6 +119,7 @@ export default function Home() {
                         inputProps={{ 'aria-label': 'search' }}
                     />
                 </div>
+                <Button variant="contained" onClick={() => setModalAddProjectOrClient(true)}>+</Button>
                 <Button variant="contained" onClick={closeAddProjectOrClient}>X</Button>
             </Toolbar>
             <div></div>
@@ -125,6 +141,14 @@ export default function Home() {
             <TextField id="description" style={{ marginBottom: 8, minHeight: 30 }} fullWidth label="Description" variant="outlined" />
             <Button variant="contained" onClick={handleClose}>Cancel</Button>
             <Button variant="contained" onClick={handleClose}>Complete</Button>
+        </div>
+    );
+
+    const bodyAddProjectOrClient = (
+        <div style={modalStyle} className={classes.addProjectOrClient}>
+            <TextField id="name" style={{ marginBottom: 8, marginTop: 15 }} fullWidth label="Name" variant="outlined" />
+            <Button variant="contained" onClick={handleCloseAddProjectOrClient}>Cancel</Button>
+            <Button variant="contained" onClick={handleCloseAddProjectOrClient}>Save</Button>
         </div>
     );
 
@@ -163,6 +187,14 @@ export default function Home() {
                 aria-describedby="simple-modal-description"
             >
                 {bodyProjectOrClientAdd}
+            </Modal>
+            <Modal
+                open={modalAddProjectOrClient}
+                onClose={closeAddProjectOrClient}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+            >
+                {bodyAddProjectOrClient}
             </Modal>
         </>
     );
