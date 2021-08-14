@@ -1,186 +1,22 @@
 import React, { useState } from 'react';
-import { Modal, Button, TextField, Toolbar, Typography, makeStyles, InputBase, alpha } from '@material-ui/core';
-import api from '../services/api';
+import TimeAdd from '../components/modal/timeAdd/timeAdd';
 
 import './Home.css';
 
 export default function Home() {
     const date = new Date();
 
-    const useStyles = makeStyles((theme) => ({
-        paper: {
-            position: 'absolute',
-            width: 690,
-            height: 600,
-            backgroundColor: theme.palette.background.paper,
-            border: '#7D53D4',
-            boxShadow: theme.shadows[5],
-            padding: theme.spacing(2, 4, 3),
-        },
-        margin: {
-            margin: theme.spacing(1)
-        },
-        title: {
-            flexGrow: 1,
-            display: 'none',
-            [theme.breakpoints.up('sm')]: {
-                display: 'block',
-            },
-        },
-        search: {
-            position: 'relative',
-            borderRadius: theme.shape.borderRadius,
-            backgroundColor: alpha(theme.palette.common.white, 0.15),
-            '&:hover': {
-                backgroundColor: alpha(theme.palette.common.white, 0.25),
-            },
-            marginLeft: 0,
-            width: '100%',
-            [theme.breakpoints.up('sm')]: {
-                marginLeft: theme.spacing(1),
-                width: 'auto',
-            },
-        },
-        inputRoot: {
-            color: 'inherit',
-        },
-        inputInput: {
-            padding: theme.spacing(1, 1, 1, 0),
-            // vertical padding + font size from searchIcon
-            paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-            transition: theme.transitions.create('width'),
-            width: '100%',
-            [theme.breakpoints.up('sm')]: {
-                width: '12ch',
-                '&:focus': {
-                    width: '20ch',
-                },
-            },
-        },
-        addProjectOrClient: {
-            position: 'absolute',
-            width: 690,
-            height: 200,
-            backgroundColor: theme.palette.background.default,
-            border: '#7D53D4',
-            boxShadow: theme.shadows[5],
-            padding: theme.spacing(2, 4, 3),
-        },
-        deleteProjectOrClient: {
-            position: 'absolute',
-            width: 500,
-            height: 200,
-            backgroundColor: theme.palette.background.default,
-            border: '#7D53D4',
-            boxShadow: theme.shadows[5],
-            padding: theme.spacing(2, 4, 3),
-        }
-    }));
-
     const [timer, setTimer] = useState(0.00);
     const [running, setRunning] = useState(false);
     const [modalTimeAdd, setModalTimeAdd] = useState(false);
-    const [modalProjectOrClientAdd, setModalProjectOrClientAdd] = useState(false);
-    const [modalAddProjectOrClient, setModalAddProjectOrClient] = useState(false);
-    const [modalDeleteProjectOrClient, setModalDeleteProjectOrClient] = useState(false);
-    const [modalStyle] = useState(getModalStyle);
-    const classes = useStyles();
 
     const stopTimer = () => {
         setRunning(false);
     };
 
-    const handleClose = () => {
-        setModalTimeAdd(false);
+    const handleAddNewTime = () => {
+        setModalTimeAdd(true);
     }
-
-    const closeAddProjectOrClient = () => {
-        setModalProjectOrClientAdd(false)
-    }
-
-    const handleCloseAddProjectOrClient = () => {
-        setModalAddProjectOrClient(false);
-    }
-
-    const handleCloseDeleteProjectOrClient = () => {
-        setModalDeleteProjectOrClient(false);
-    }
-
-    function getModalStyle() {
-        const top = 50;
-        const left = 50;
-
-        return {
-            top: `${top}%`,
-            left: `${left}%`,
-            transform: `translate(-${top}%, -${left}%)`,
-        };
-    }
-
-    const bodyProjectOrClientAdd = (
-        <div style={modalStyle} className={classes.paper}>
-            <Toolbar>
-                <Typography className={classes.title} variant="h6" noWrap>
-                    Projects
-                </Typography>
-                <div className={classes.search}>
-                    <InputBase
-                        placeholder="Search…"
-                        classes={{
-                            root: classes.inputRoot,
-                            input: classes.inputInput,
-                        }}
-                        inputProps={{ 'aria-label': 'search' }}
-                    />
-                </div>
-                <Button variant="contained" onClick={() => setModalAddProjectOrClient(true)}>+</Button>
-                <Button variant="contained" onClick={closeAddProjectOrClient}>X</Button>
-            </Toolbar>
-            <div className="bodyListItems">
-                <div className="itemList">
-                    <div className="itemName">Item teste</div>
-                    <div className="iconsEditOrDelete">
-                        <Button variant="contained" onClick={() => setModalAddProjectOrClient(true)}>edit</Button>
-                        <Button variant="contained" onClick={() => setModalDeleteProjectOrClient(true)}>delete</Button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-
-    const body = (
-        <div style={modalStyle} className={classes.paper}>
-            <div className="addProject">
-                <TextField id="project" style={{ marginBottom: 8, marginTop: 15 }} fullWidth label="Project" variant="outlined" />
-                <Button variant="contained" onClick={() => setModalProjectOrClientAdd(true)}>+</Button>
-            </div>
-            <div className="addClient">
-                <TextField id="client" style={{ marginBottom: 8 }} fullWidth label="Client" variant="outlined" />
-                <Button variant="contained" onClick={() => setModalProjectOrClientAdd(true)}>+</Button>
-            </div>
-            <TextField id="start" style={{ marginBottom: 8 }} fullWidth label="Start" variant="outlined" />
-            <TextField id="finish" style={{ marginBottom: 8 }} fullWidth label="Finish" variant="outlined" />
-            <TextField id="description" style={{ marginBottom: 8, minHeight: 30 }} fullWidth label="Description" variant="outlined" />
-            <Button variant="contained" onClick={handleClose}>Cancel</Button>
-            <Button variant="contained" onClick={handleClose}>Complete</Button>
-        </div>
-    );
-
-    const bodyAddProjectOrClient = (
-        <div style={modalStyle} className={classes.addProjectOrClient}>
-            <TextField id="name" style={{ marginBottom: 8, marginTop: 15 }} fullWidth label="Name" variant="outlined" />
-            <Button variant="contained" onClick={handleCloseAddProjectOrClient}>Cancel</Button>
-            <Button variant="contained" onClick={handleCloseAddProjectOrClient}>Save</Button>
-        </div>
-    );
-
-    const bodyDeleteProjectOrClient = (
-        <div style={modalStyle} className={classes.deleteProjectOrClient}>
-            <p>Do you want to delete this project/client?</p>
-            <Button variant="contained" onClick={handleCloseDeleteProjectOrClient}>No</Button>
-            <Button variant="contained" onClick={handleCloseDeleteProjectOrClient}>Yes</Button>
-        </div>
-    );
 
     return (
         <>
@@ -188,7 +24,7 @@ export default function Home() {
                 {date.toDateString()}
             </div>
 
-            <button className="btn" id="btnNewTime" onClick={() => setModalTimeAdd(true)}>
+            <button className="btn" id="btnNewTime" onClick={handleAddNewTime}>
                 New
             </button>
             <button className="btn" id="btnStartTime" onClick={() => setRunning(true)}>
@@ -197,44 +33,15 @@ export default function Home() {
             <button className="btn" id="btnStopTime" onClick={() => stopTimer}>
                 Stop
             </button>
-            <button className="btn" id="btnFinishTime" onClick={() => setModalTimeAdd(true)}>
+            <button className="btn" id="btnFinishTime" onClick={handleAddNewTime}>
                 Finish
             </button>
 
-            <Modal
-                open={modalTimeAdd}
-                onClose={handleClose}
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
-            >
-                {body}
-            </Modal>
+            <div className="gridItems">
 
-            <Modal
-                open={modalProjectOrClientAdd}
-                onClose={closeAddProjectOrClient}
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
-            >
-                {bodyProjectOrClientAdd}
-            </Modal>
-            <Modal
-                open={modalAddProjectOrClient}
-                onClose={closeAddProjectOrClient}
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
-            >
-                {bodyAddProjectOrClient}
-            </Modal>
+            </div>
 
-            <Modal
-                open={modalDeleteProjectOrClient}
-                onClose={handleCloseDeleteProjectOrClient}
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
-            >
-                {bodyDeleteProjectOrClient}
-            </Modal>
+            <TimeAdd open={modalTimeAdd}/>
         </>
     );
 }
