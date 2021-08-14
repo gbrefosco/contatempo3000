@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button, TextField, makeStyles } from '@material-ui/core';
-import './profile.css';
 
-export default function Profile(props) {
-
+export default function NewProjectOrClient(props) {
     const useStyles = makeStyles((theme) => ({
         addProjectOrClient: {
             position: 'absolute',
@@ -45,26 +43,8 @@ export default function Profile(props) {
 
     return (
         <>
-            <div className="prof">
-                Your Profile
-            </div>
-
-            <div style={{ textAlign: 'center', position: 'absolute', left: '45%', top: '50%' }}>
-                <p style={{ color: '#7D53D4', fontSize: '25px' }}>{props.username}</p>
-            </div>
-            <div className="caixa" style={{ textAlign: 'center' }}>
-                <p style={{ color: '#7D53D4', fontSize: '20px' }}>{props.email}</p>
-                <button className="editUserMail" onClick={() => setModalAddProjectOrClient(true)}>editar</button>
-            </div>
-            <div className="caixa" style={{ textAlign: 'center', left: '55%' }}>
-                <p style={{ color: '#7D53D4', fontSize: '20px' }}>{props.password}</p>
-                <button className="editUserPassword" onClick={() => setModalAddProjectOrClient(true)}>editar</button>
-            </div>
-            <button className="caixa" style={{ top: '85%' }}>Your Projects</button>
-            <button className="caixa" style={{ left: '55%', top: '85%' }}>Your Clients</button>
-
             <Modal
-                open={modalAddProjectOrClient}
+                open={props.open}
                 onClose={handleCloseAddProjectOrClient}
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
