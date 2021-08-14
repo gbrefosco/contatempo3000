@@ -65,6 +65,15 @@ export default function Home() {
             border: '#7D53D4',
             boxShadow: theme.shadows[5],
             padding: theme.spacing(2, 4, 3),
+        },
+        deleteProjectOrClient: {
+            position: 'absolute',
+            width: 500,
+            height: 200,
+            backgroundColor: theme.palette.background.default,
+            border: '#7D53D4',
+            boxShadow: theme.shadows[5],
+            padding: theme.spacing(2, 4, 3),
         }
     }));
 
@@ -73,6 +82,7 @@ export default function Home() {
     const [modalTimeAdd, setModalTimeAdd] = useState(false);
     const [modalProjectOrClientAdd, setModalProjectOrClientAdd] = useState(false);
     const [modalAddProjectOrClient, setModalAddProjectOrClient] = useState(false);
+    const [modalDeleteProjectOrClient, setModalDeleteProjectOrClient] = useState(false);
     const [modalStyle] = useState(getModalStyle);
     const classes = useStyles();
 
@@ -90,6 +100,10 @@ export default function Home() {
 
     const handleCloseAddProjectOrClient = () => {
         setModalAddProjectOrClient(false);
+    }
+
+    const handleCloseDeleteProjectOrClient = () => {
+        setModalDeleteProjectOrClient(false);
     }
 
     function getModalStyle() {
@@ -122,7 +136,15 @@ export default function Home() {
                 <Button variant="contained" onClick={() => setModalAddProjectOrClient(true)}>+</Button>
                 <Button variant="contained" onClick={closeAddProjectOrClient}>X</Button>
             </Toolbar>
-            <div></div>
+            <div className="bodyListItems">
+                <div className="itemList">
+                    <div className="itemName">Item teste</div>
+                    <div className="iconsEditOrDelete">
+                        <Button variant="contained" onClick={() => setModalAddProjectOrClient(true)}>edit</Button>
+                        <Button variant="contained" onClick={() => setModalDeleteProjectOrClient(true)}>delete</Button>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 
@@ -149,6 +171,14 @@ export default function Home() {
             <TextField id="name" style={{ marginBottom: 8, marginTop: 15 }} fullWidth label="Name" variant="outlined" />
             <Button variant="contained" onClick={handleCloseAddProjectOrClient}>Cancel</Button>
             <Button variant="contained" onClick={handleCloseAddProjectOrClient}>Save</Button>
+        </div>
+    );
+
+    const bodyDeleteProjectOrClient = (
+        <div style={modalStyle} className={classes.deleteProjectOrClient}>
+            <p>Do you want to delete this project/client?</p>
+            <Button variant="contained" onClick={handleCloseDeleteProjectOrClient}>No</Button>
+            <Button variant="contained" onClick={handleCloseDeleteProjectOrClient}>Yes</Button>
         </div>
     );
 
@@ -195,6 +225,15 @@ export default function Home() {
                 aria-describedby="simple-modal-description"
             >
                 {bodyAddProjectOrClient}
+            </Modal>
+
+            <Modal
+                open={modalDeleteProjectOrClient}
+                onClose={handleCloseDeleteProjectOrClient}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+            >
+                {bodyDeleteProjectOrClient}
             </Modal>
         </>
     );
