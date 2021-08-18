@@ -7,7 +7,7 @@
 
 module.exports = {
 
-  tableName: 'HOURSY',
+  tableName: 'hoursy',
 
   attributes: {
 
@@ -19,7 +19,6 @@ module.exports = {
 
     end: {
       type: 'string',
-      required: true,
       columnName: 'HOUR_STOP'
     },
 
