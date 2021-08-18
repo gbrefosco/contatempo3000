@@ -1,8 +1,25 @@
 import React, { useState } from 'react';
 import { Modal, Button, TextField, makeStyles } from '@material-ui/core';
 import ProjectOrClientAdd from '../projectOrClientAdd/projectOrClientAdd';
+import { Dropdown } from 'semantic-ui-react';
+
+import 'semantic-ui-css/semantic.min.css'
 
 export default function TimeAdd(props) {
+
+    const projects = [
+        { key: '1', text: 'projeto teste 1', value: 'projeto teste 1' },
+        { key: '2', text: 'projeto teste 2', value: 'projeto teste 2' },
+        { key: '3', text: 'projeto teste 3', value: 'projeto teste 3' },
+        { key: '4', text: 'projeto teste 4', value: 'projeto teste 4' }
+    ];
+
+    const clients = [
+        { key: '1', text: 'projeto teste 1', value: 'projeto teste 1' },
+        { key: '2', text: 'projeto teste 2', value: 'projeto teste 2' },
+        { key: '3', text: 'projeto teste 3', value: 'projeto teste 3' },
+        { key: '4', text: 'projeto teste 4', value: 'projeto teste 4' }
+    ];
 
     const useStyles = makeStyles((theme) => ({
         paper: {
@@ -42,14 +59,18 @@ export default function TimeAdd(props) {
 
     const body = (
         <div style={modalStyle} className={classes.paper}>
-            <div className="addProject">
-                <TextField id="project" style={{ marginBottom: 8, marginTop: 15 }} fullWidth label="Project" variant="outlined" />
-                <Button variant="contained" onClick={() => { setModalProjectOrClientAdd(true) }}>+</Button>
-            </div>
-            <div className="addClient">
-                <TextField id="client" style={{ marginBottom: 8 }} fullWidth label="Client" variant="outlined" />
-                <Button variant="contained" onClick={() => { setModalProjectOrClientAdd(true) } }>+</Button>
-            </div>
+            <Dropdown placeholder='Select Project'
+                fluid
+                search
+                selection
+                options={projects}
+            />
+            <Dropdown placeholder='Select Client'
+                fluid
+                search
+                selection
+                options={clients}
+            />
             <TextField id="start" style={{ marginBottom: 8 }} fullWidth label="Start" variant="outlined" />
             <TextField id="finish" style={{ marginBottom: 8 }} fullWidth label="Finish" variant="outlined" />
             <TextField id="description" multiline rows={7} style={{ marginBottom: 8, minHeight: 30 }} fullWidth label="Description" variant="outlined" />
