@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './project.css';
 import api from '../services/api';
 import * as AiIcons from "react-icons/ai";
@@ -8,17 +8,27 @@ export default function Project() {
     const [newProject, setNewProject] = useState('');
     const [project, setProject] = useState([]);
 
+    async function loadProjects() {
+        const prj = await api.get('/activity');
+
+        if (prj.data.length > 0) {
+            setProject([prj.data[0]]);
+        }
+    }
+
     async function handleAddProject() {
         try {
-            const response = await api.get('projects');
-
-            const projects = response.data;
-
-            setProject([...project, projects]);
+            const response = await api.post('/activity', {
+                name: ''
+            });
         } catch (err) {
 
         }
     }
+
+    useEffect(() => {
+        loadProjects();
+    });
 
     return (
         <>
