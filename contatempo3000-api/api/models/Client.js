@@ -7,7 +7,7 @@
 
 module.exports = {
 
-  tableName: 'CLIENT',
+  tableName: 'client',
 
   attributes: {
     
