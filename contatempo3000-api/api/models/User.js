@@ -14,39 +14,49 @@ module.exports = {
     login: {
       type: 'string',
       maxLength: 69,
-      columnName: 'NICKNAME'
+      columnName: 'nickname'
     },
 
     password: {
       type: 'string',
       maxLength: 69,
       required: true,
-      columnName: 'PASSWORD'
+      columnName: 'password'
     },
 
     email: {
       type: 'string',
       maxLength: 69,
-      columnName: 'EMAIL'
+      columnName: 'email'
     },
 
     secretAnswer: {
       type: 'string',
       maxLength: 269,
-      columnName: 'SECRETANSWER'
+      columnName: 'secretanswer'
     },
 
     secretQuestion: {
       type: 'string',
       maxLength: 269,
-      columnName: 'SECRETQUESTION'
+      columnName: 'secretquestion'
     },
+
 
     times: {
       collection: 'time',
       via: 'user'
-    }
+    },
 
+    activities: {
+      collection: 'activity',
+      via: 'user'
+    },
+
+    clients: {
+      collection: 'client',
+      via: 'user'
+    }
   },
 };
 

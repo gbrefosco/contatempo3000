@@ -14,24 +14,24 @@ module.exports = {
     start: {
       type: 'string',
       required: true,
-      columnName: 'HOUR_START'
+      columnName: 'hour_start'
     },
 
     end: {
       type: 'string',
-      columnName: 'HOUR_STOP'
+      columnName: 'hour_stop'
     },
 
     activity: {
       model: 'activity',
-      required: true,
-      columnName: 'ACTIVITY_ID'
+      //required: true,
+      columnName: 'activity_id'
     },
 
     user: {
       model: 'user',
       required: true,
-      columnName: 'USER_ID'
+      columnName: 'user_id'
     },
 
 
