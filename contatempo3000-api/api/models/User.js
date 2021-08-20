@@ -11,6 +11,12 @@ module.exports = {
 
   attributes: {
 
+    id: {
+      type: 'number',
+      autoIncrement: true,
+      columnName: 'user_id'
+    },
+
     login: {
       type: 'string',
       maxLength: 69,
@@ -20,7 +26,6 @@ module.exports = {
     password: {
       type: 'string',
       maxLength: 69,
-      required: true,
       columnName: 'password'
     },
 
@@ -28,6 +33,11 @@ module.exports = {
       type: 'string',
       maxLength: 69,
       columnName: 'email'
+    },
+
+    avatar: {
+      type: 'ref',
+      columnName: 'image'
     },
 
     secretAnswer: {
