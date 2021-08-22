@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, TextField, makeStyles } from '@material-ui/core';
 import api from '../services/api';
+import SideNavMenu from '../components/global/sideNav';
 
 import * as AiIcons from "react-icons/ai";
 
@@ -94,6 +95,7 @@ export default function Home() {
 
     return (
         <>
+            <SideNavMenu />
             <div className="actualDate">
                 {date.toDateString()}
             </div>

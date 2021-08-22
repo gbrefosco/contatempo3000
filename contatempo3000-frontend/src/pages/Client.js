@@ -3,6 +3,7 @@ import './project.css';
 import api from '../services/api';
 import { Modal, Button, makeStyles } from '@material-ui/core';
 import * as AiIcons from "react-icons/ai";
+import SideNavMenu from '../components/global/sideNav';
 
 export default function Client() {
 
@@ -105,6 +106,7 @@ export default function Client() {
 
     return (
         <>
+            <SideNavMenu />
             <form className="formClient" onSubmit={handleAddClient}>
                 <input
                     className="clientName"

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button, TextField, makeStyles } from '@material-ui/core';
 import './profile.css';
+import SideNavMenu from '../components/global/sideNav';
 
 export default function Profile(props) {
 
@@ -45,6 +46,7 @@ export default function Profile(props) {
 
     return (
         <>
+            <SideNavMenu />
             <div className="prof">
                 Your Profile
             </div>

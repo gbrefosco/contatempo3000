@@ -37,7 +37,7 @@ const SideNavMenu = () => {
                 </div>
                 <ul class="nav-list" >
                     <li >
-                        <a href="/" >
+                        <a href="/home" >
                             <i class='bx bx-grid-alt' >
                                 <AiIcons.AiOutlineHome />
                             </i>
