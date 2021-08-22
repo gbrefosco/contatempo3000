@@ -1,57 +1,155 @@
 import React, { useState, useEffect } from 'react';
 import './project.css';
 import api from '../services/api';
+import { Modal, Button, makeStyles } from '@material-ui/core';
 import * as AiIcons from "react-icons/ai";
 
 export default function Project() {
 
+    const useStyles = makeStyles((theme) => ({
+        addProjectOrClient: {
+            position: 'absolute',
+            width: 690,
+            height: 200,
+            backgroundColor: theme.palette.background.default,
+            border: '#7D53D4',
+            boxShadow: theme.shadows[5],
+            padding: theme.spacing(2, 4, 3),
+        },
+        deleteProject: {
+            position: 'absolute',
+            width: 500,
+            height: 200,
+            backgroundColor: theme.palette.background.default,
+            border: '#7D53D4',
+            boxShadow: theme.shadows[5],
+            padding: theme.spacing(2, 4, 3),
+        }
+    }));
+
     const [newProject, setNewProject] = useState('');
     const [project, setProject] = useState([]);
 
-    async function loadProjects() {
-        const prj = await api.get('/activity');
+    const [editProject, setEditProject] = useState([]);
+    const [newEditProject, setNewEditProject] = useState('');
+    const [modalAddProject, setModalAddProject] = useState(false);
 
-        if (prj.data.length > 0) {
-            setProject([prj.data[0]]);
+    const [modalDeleteProject, setModalDeleteProject] = useState(false);
+    const [deleteProject, setDeleteProject] = useState(null);
+
+    const [modalStyle] = useState(getModalStyle);
+    const classes = useStyles();
+
+    const bodyAddProject = (
+        <div style={modalStyle} className={classes.addProjectOrClient}>
+            <input className="editProjectName"
+                value={editProject[1]}
+                placeholder="Enter the new project name" />
+            <Button variant="contained" onClick={handleCloseAddProjectOrClient}>Cancel</Button>
+            <Button variant="contained" onClick={handleCloseAddProjectOrClient}>Save</Button>
+        </div>
+    );
+
+    const bodyDeleteProject = (
+        <div style={modalStyle} className={classes.deleteProject}>
+            <p>Do you want to delete this project?</p>
+            <Button variant="contained" onClick={handleCloseDeleteProject}>No</Button>
+            <Button variant="contained" onClick={() => {
+                console.log(deleteProject);
+                const response = api.delete('/activity', {
+                    id: deleteProject
+                });
+
+                setModalDeleteProject(false);
+            }}>Yes</Button>
+        </div>
+    );
+
+    function handleCloseAddProjectOrClient() {
+        setModalAddProject(false);
+    }
+
+    function handleCloseDeleteProject() {
+        setModalDeleteProject(false);
+    }
+
+    function handleAddProject(e) {
+        e.preventDefault();
+
+        if (newProject) {
+            api.post('/activity', {
+                name: newProject
+            });
+
+            setNewProject('');
         }
     }
 
-    async function handleAddProject() {
-        try {
-            const response = await api.post('/activity', {
-                name: ''
-            });
-        } catch (err) {
+    function getModalStyle() {
+        const top = 50;
+        const left = 50;
 
-        }
+        return {
+            top: `${top}%`,
+            left: `${left}%`,
+            transform: `translate(-${top}%, -${left}%)`,
+        };
     }
 
     useEffect(() => {
-        loadProjects();
-    });
+        api.get('/activity')
+            .then(response => {
+                setProject(response.data);
+            });
+    }, [project]);
 
     return (
         <>
-            <form className="formProject">
+            <form className="formProject" onSubmit={handleAddProject}>
                 <input
                     className="projectName"
                     value={newProject}
                     onChange={e => setNewProject(e.target.value)}
                     placeholder="Enter the project name"
                 />
-                <button className="submitProject" type="submit" onSubmit={handleAddProject}>Save</button>
+                <button className="submitProject" type="submit">Save</button>
             </form>
 
             <div className="gridProject">
                 {project.map(proj => (
-                    <div className="itemProject">
+                    <div className="itemProject" key={proj.id}>
                         <strong>{proj.name}</strong>
                         <div className="svgIcon">
-                            <AiIcons.AiOutlineEdit />
+                            <AiIcons.AiOutlineDelete onClick={() => {
+                                setModalDeleteProject(true);
+                                setDeleteProject(proj.id);
+                            }} />
+                            <AiIcons.AiOutlineEdit onClick={() => {
+                                setModalAddProject(true);
+                                setEditProject([proj.id, proj.name]);
+                            }} />
                         </div>
                     </div>
                 ))}
             </div>
+
+            <Modal
+                open={modalAddProject}
+                onClose={handleCloseAddProjectOrClient}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+            >
+                {bodyAddProject}
+            </Modal>
+
+            <Modal
+                open={modalDeleteProject}
+                onClose={handleCloseDeleteProject}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+            >
+                {bodyDeleteProject}
+            </Modal>
         </>
     );
 }
