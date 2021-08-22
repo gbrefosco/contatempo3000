@@ -7,7 +7,7 @@ import * as AiIcons from "react-icons/ai";
 export default function Project() {
 
     const useStyles = makeStyles((theme) => ({
-        addProjectOrClient: {
+        addProject: {
             position: 'absolute',
             width: 690,
             height: 200,
@@ -41,12 +41,12 @@ export default function Project() {
     const classes = useStyles();
 
     const bodyAddProject = (
-        <div style={modalStyle} className={classes.addProjectOrClient}>
+        <div style={modalStyle} className={classes.addProject}>
             <input className="editProjectName"
                 value={editProject[1]}
                 placeholder="Enter the new project name" />
-            <Button variant="contained" onClick={handleCloseAddProjectOrClient}>Cancel</Button>
-            <Button variant="contained" onClick={handleCloseAddProjectOrClient}>Save</Button>
+            <Button variant="contained" onClick={handleCloseAddProject}>Cancel</Button>
+            <Button variant="contained" onClick={handleCloseAddProject}>Save</Button>
         </div>
     );
 
@@ -65,7 +65,7 @@ export default function Project() {
         </div>
     );
 
-    function handleCloseAddProjectOrClient() {
+    function handleCloseAddProject() {
         setModalAddProject(false);
     }
 
@@ -135,7 +135,7 @@ export default function Project() {
 
             <Modal
                 open={modalAddProject}
-                onClose={handleCloseAddProjectOrClient}
+                onClose={handleCloseAddProject}
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
             >

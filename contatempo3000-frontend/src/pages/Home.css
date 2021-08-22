@@ -26,11 +26,29 @@
     border-radius: 5px;
 }
 
-.gridItems {
-    border: 1px solid #4110a1;
+.grid {
+    margin-top: 80px;
+    max-width: 700px;
     border-radius: 5px;
-    width: 1200px;
-    height: 400px;
-    margin: 100px 400px;
+}
+
+.item {
+    margin-left: 100px;
+    background: #fff;
+    font-size: 18px;
+    border: 2px solid #7D53D4;
+    border-radius: 5px;
+    width: 100%;
+    padding: 24px;
+    display: flex;
+    flex: 1;
+    text-decoration: none;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.svgIcon {
+    margin-left: auto;
+    color: #4e16c0;
     align-items: center;
 }
