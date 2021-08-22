@@ -15,13 +15,23 @@ module.exports = {
       type: 'string',
       required: true,
       maxLength: 69,
-      columnName: 'ACTIVITY_NAME'
+      columnName: 'activity_name'
     },
 
     note: {
       type: 'string',
       maxLength: 69,
-      columnName: 'NOTE'
+      columnName: 'note'
+    },
+
+    user: {
+      model: 'user',
+      columnName: 'user_id'
+    },
+
+    client: {
+      model: 'client',
+      columnName: 'client_id'
     },
 
     time: {

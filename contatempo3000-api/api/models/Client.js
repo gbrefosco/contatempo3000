@@ -15,7 +15,17 @@ module.exports = {
       type: 'string',
       maxLength: 69,
       required: true,
-      columnName:'CLIENT_NAME'
+      columnName:'client_name'
+    },
+
+    user: {
+      model: 'user',
+      columnName: 'user_id'
+    },
+
+    activities: {
+      collection: 'activity',
+      via: 'client'
     }
   },
 };
