@@ -10,11 +10,16 @@ module.exports = {
   tableName: 'client',
 
   attributes: {
+
+    id: {
+      type: 'number',
+      autoIncrement: true,
+      columnName: 'client_id'
+    },
     
     name: {
       type: 'string',
       maxLength: 69,
-      required: true,
       columnName:'client_name'
     },
 
