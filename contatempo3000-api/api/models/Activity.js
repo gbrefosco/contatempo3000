@@ -29,11 +29,6 @@ module.exports = {
       columnName: 'user_id'
     },
 
-    client: {
-      model: 'client',
-      columnName: 'client_id'
-    },
-
     time: {
       collection: 'time',
       via: 'activity',

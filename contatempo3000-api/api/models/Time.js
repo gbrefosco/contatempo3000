@@ -24,7 +24,6 @@ module.exports = {
 
     activity: {
       model: 'activity',
-      //required: true,
       columnName: 'activity_id'
     },
 
@@ -32,10 +31,7 @@ module.exports = {
       model: 'user',
       required: true,
       columnName: 'user_id'
-    },
-
-
+    }
   },
-
 };
 

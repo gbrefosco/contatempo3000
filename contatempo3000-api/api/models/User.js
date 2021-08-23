@@ -51,11 +51,6 @@ module.exports = {
     activities: {
       collection: 'activity',
       via: 'user'
-    },
-
-    clients: {
-      collection: 'client',
-      via: 'user'
     }
   },
 };
