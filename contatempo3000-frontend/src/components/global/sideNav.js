@@ -54,15 +54,6 @@ const SideNavMenu = () => {
                         </a>
                         <span class="tooltip" > Projects </span>
                     </li>
-                    <li >
-                        <a href="/client" >
-                            <i class='bx bx-user' >
-                                <AiIcons.AiOutlineTeam />
-                            </i>
-                            <span class="links_name" > Client </span>
-                        </a>
-                        <span class="tooltip" > Client </span>
-                    </li>
                     <li class="profile" >
                         <a href="/profile" >
                             <i class='bx bx-log-out' id="log_out" >

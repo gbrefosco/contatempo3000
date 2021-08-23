@@ -35,9 +35,6 @@ export default function Project() {
     const [newEditProject, setNewEditProject] = useState('');
     const [modalAddProject, setModalAddProject] = useState(false);
 
-    const [modalDeleteProject, setModalDeleteProject] = useState(false);
-    const [deleteProject, setDeleteProject] = useState(null);
-
     const [modalStyle] = useState(getModalStyle);
     const classes = useStyles();
 
@@ -51,27 +48,8 @@ export default function Project() {
         </div>
     );
 
-    const bodyDeleteProject = (
-        <div style={modalStyle} className={classes.deleteProject}>
-            <p>Do you want to delete this project?</p>
-            <Button variant="contained" onClick={handleCloseDeleteProject}>No</Button>
-            <Button variant="contained" onClick={() => {
-                console.log(deleteProject);
-                const response = api.delete('/activity', {
-                    id: deleteProject
-                });
-
-                setModalDeleteProject(false);
-            }}>Yes</Button>
-        </div>
-    );
-
     function handleCloseAddProject() {
         setModalAddProject(false);
-    }
-
-    function handleCloseDeleteProject() {
-        setModalDeleteProject(false);
     }
 
     function handleAddProject(e) {
@@ -122,10 +100,6 @@ export default function Project() {
                     <div className="itemProject" key={proj.id}>
                         <strong>{proj.name}</strong>
                         <div className="svgIcon">
-                            <AiIcons.AiOutlineDelete onClick={() => {
-                                setModalDeleteProject(true);
-                                setDeleteProject(proj.id);
-                            }} />
                             <AiIcons.AiOutlineEdit onClick={() => {
                                 setModalAddProject(true);
                                 setEditProject([proj.id, proj.name]);
@@ -142,15 +116,6 @@ export default function Project() {
                 aria-describedby="simple-modal-description"
             >
                 {bodyAddProject}
-            </Modal>
-
-            <Modal
-                open={modalDeleteProject}
-                onClose={handleCloseDeleteProject}
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
-            >
-                {bodyDeleteProject}
             </Modal>
         </>
     );

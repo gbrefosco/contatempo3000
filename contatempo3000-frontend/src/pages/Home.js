@@ -28,9 +28,11 @@ export default function Home() {
     const [modalTimeAdd, setModalTimeAdd] = useState(false);
     const [time, setTime] = useState([]);
 
+    const [itemsGrid, setItemsGrid] = useState([]);
+
     const [projects, setProjects] = useState([]);
     const [clients, setClients] = useState([]);
-
+    
     const [modalStyle] = useState(getModalStyle);
     const classes = useStyles();
 
@@ -42,6 +44,10 @@ export default function Home() {
         api.get('/client').then(response => setClients(response.data));
     }, [clients]);
 
+    useEffect(() => {
+        api.get('/time').then(response => setItemsGrid(response.data));
+    }, [itemsGrid]);
+
     const body = (
         <div style={modalStyle} className={classes.paper}>
             <form>
@@ -50,14 +56,6 @@ export default function Home() {
                     <select>
                         {projects.map(proj => (
                             <option value={proj.id}>{proj.name}</option>
-                        ))}
-                    </select>
-                </label>
-                <label>
-                    Select your client:
-                    <select>
-                        {clients.map(cli => (
-                            <option value={cli.id}>{cli.name}</option>
                         ))}
                     </select>
                 </label>
@@ -114,16 +112,17 @@ export default function Home() {
             </button>
 
             <div className="grid">
-                <div className="item">
-                    <strong>00:00 - 00:00</strong>
-                    <strong>Project</strong>
-                    <strong>Client</strong>
+                {itemsGrid.map(item => (
+                    <div className="item">
+                    <strong>{item.start} - {item.end}</strong>
+                    <strong>{item.activity}</strong>
                     <div className="svgIcon">
                         <AiIcons.AiOutlineEye />
                         <AiIcons.AiOutlineDelete />
                         <AiIcons.AiOutlineEdit />
                     </div>
                 </div>
+                ))}
             </div>
 
             <Modal
