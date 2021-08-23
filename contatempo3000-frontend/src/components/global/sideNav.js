@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./sideNav.css";
 
 import * as AiIcons from "react-icons/ai";
 
-const SideNavMenu = (props) => {
+const SideNavMenu = () => {
 
     const [inactive, setInactive] = useState(false);
-
-    useEffect(() => {
-        props.onCollapse(inactive);
-    });
 
     function menuBtnChange() {
         let sidebar = document.querySelector(".sidebar");
@@ -41,7 +37,7 @@ const SideNavMenu = (props) => {
                 </div>
                 <ul class="nav-list" >
                     <li >
-                        <a href="/" >
+                        <a href="/home" >
                             <i class='bx bx-grid-alt' >
                                 <AiIcons.AiOutlineHome />
                             </i>
@@ -50,13 +46,13 @@ const SideNavMenu = (props) => {
                         <span class="tooltip" > Home </span>
                     </li>
                     <li >
-                        <a href="/graphics" >
+                        <a href="/project" >
                             <i class='bx bx-user' >
                                 <AiIcons.AiOutlineProject />
                             </i>
-                            <span class="links_name" > Graphics </span>
+                            <span class="links_name" > Projects </span>
                         </a>
-                        <span class="tooltip" > Graphics </span>
+                        <span class="tooltip" > Projects </span>
                     </li>
                     <li class="profile" >
                         <a href="/profile" >

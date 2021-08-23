@@ -1,35 +1,27 @@
-import React, { useState } from "react";
-import CssBaseline from '@material-ui/core/CssBaseline';
+import React from "react";
+import { Route, Switch } from 'react-router-dom';
 
-import SideNavMenu from "./components/global/sideNav";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Graphics from "./pages/Graphics";
-import Profile from "./pages/Profile";
-import SignUp from "./components/singIn/signup"
-import Login from "./components/singIn/login"
+import { BrowserRouter } from "react-router-dom";
+
+import SignUp from '../src/components/singIn/signup';
+import Login from '../src/components/singIn/login';
+import Home from '../src/pages/Home';
+import Profile from '../src/pages/Profile';
+import Project from '../src/pages/Project';
 
 function App() {
 
-    const [inactive, setInactive] = useState(false);
-
     return (
         <>
-            <Router>
-                <CssBaseline />
-                <SideNavMenu onCollapse={(inactive) => {
-                    setInactive(inactive);
-                }} />
+            <BrowserRouter>
                 <Switch>
-                    <div className={`body ${inactive ? 'inactive' : ''}`}>
-                        <Route path="/" exact component={Home} />
-                        <Route path="/graphics" component={Graphics} />
-                        <Route path="/profile" component={Profile} />
-                        <Route path="/signup" component={SignUp} />
-                        <Route path="/login" component={Login} />
-                    </div>
+                    <Route path="/" exact component={Login} />
+                    <Route path="/singup" component={SignUp} />
+                    <Route path="/home" component={Home} />
+                    <Route path="/profile" component={Profile} />
+                    <Route path="/project" component={Project} />
                 </Switch>
-            </Router>
+            </BrowserRouter>
         </>
     );
 }

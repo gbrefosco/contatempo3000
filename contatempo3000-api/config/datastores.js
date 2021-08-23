@@ -48,6 +48,7 @@ module.exports.datastores = {
     *    (See https://sailsjs.com/config/datastores for help.)                 *
     *                                                                          *
     ***************************************************************************/
+
     adapter: 'sails-postgresql',
     url: 'postgres://eedmfapn:gpeeHqOhjuIFHW2pbgN7B7-F41bVhgv6@motty.db.elephantsql.com/eedmfapn',
   },
