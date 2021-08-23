@@ -48,10 +48,8 @@ module.exports.datastores = {
     *    (See https://sailsjs.com/config/datastores for help.)                 *
     *                                                                          *
     ***************************************************************************/
-//    adapter: 'sails-postgresql',
-//    url: 'postgresql://jyvowlnwotpgnh:2780ba28dfd335c7784fd7c0f0493e67e6ede01eca081f70e62fdc4f8038627e@ec2-35-174-56-18.compute-1.amazonaws.com:5432/deqf8613ierb3i',
-//    ssl: true,
-//    max: 5
+    adapter: 'sails-postgresql',
+    url: 'postgres://eedmfapn:gpeeHqOhjuIFHW2pbgN7B7-F41bVhgv6@motty.db.elephantsql.com/eedmfapn',
   },
 
 

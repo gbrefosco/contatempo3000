@@ -11,14 +11,19 @@ module.exports = {
 
   attributes: {
 
+    id: {
+      type: 'number',
+      autoIncrement: true,
+      columnName: 'hour_id'
+    },
+
     start: {
-      type: 'string',
-      required: true,
+      type: 'ref',
       columnName: 'hour_start'
     },
 
     end: {
-      type: 'string',
+      type: 'ref',
       columnName: 'hour_stop'
     },
 
@@ -29,7 +34,6 @@ module.exports = {
 
     user: {
       model: 'user',
-      required: true,
       columnName: 'user_id'
     }
   },

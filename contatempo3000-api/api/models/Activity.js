@@ -10,6 +10,12 @@ module.exports = {
   tableName: 'activity',
 
   attributes: {
+
+    id: {
+      type: 'number',
+      autoIncrement: true,
+      columnName: 'activity_id'
+    },
     
     name: {
       type: 'string',
@@ -20,7 +26,7 @@ module.exports = {
 
     note: {
       type: 'string',
-      maxLength: 69,
+      maxLength: 6969,
       columnName: 'note'
     },
 
