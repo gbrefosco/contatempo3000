@@ -20,12 +20,14 @@ module.exports = {
     login: {
       type: 'string',
       maxLength: 69,
+      required: true,
       columnName: 'nickname'
     },
 
     password: {
       type: 'string',
       maxLength: 69,
+      required: true,
       columnName: 'password'
     },
 
@@ -33,11 +35,6 @@ module.exports = {
       type: 'string',
       maxLength: 69,
       columnName: 'email'
-    },
-
-    avatar: {
-      type: 'ref',
-      columnName: 'image'
     },
 
     secretAnswer: {
@@ -60,11 +57,6 @@ module.exports = {
 
     activities: {
       collection: 'activity',
-      via: 'user'
-    },
-
-    clients: {
-      collection: 'client',
       via: 'user'
     }
   },
