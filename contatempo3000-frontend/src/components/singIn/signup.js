@@ -1,7 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import api from '../../services/api';
 import './signup.css';
 
 export default function SignUp(){
+
+    const [emailExists, setEmailExists] = useState([]);
+    const [userExists, setUserExists] = useState([]);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [userNickName, setUserNickName] = useState('');
+
+    async function handleCreateAccount(e) {
+        e.preventDefault();
+        await Promise.all([
+            api.get(`/user?email=${email}`).then(response => setEmailExists(response.data)),
+            api.get(`/user?login=${userNickName}`).then(response => setUserExists(response.data)),
+        ]);
+
+        console.log(userExists);
+        console.log(emailExists);
+
+        if (emailExists.length > 0) {
+            alert('This Email is already in use');
+            e.preventDefault();
+        } else if (userExists.length > 0) {
+            alert('This UserName is already in use');
+            e.preventDefault();
+        } /*else {
+            api.post('/user', {
+                login: userNickName,
+                email: email,
+                password: password
+            });
+        }*/
+        
+    }
+
     return (
         <>
         <div className="titulo">
@@ -9,19 +43,19 @@ export default function SignUp(){
             <h2 className="description">A simple and pratical time-manager <br/> for those who want to be organized</h2>
         </div>
 
-        <div className="PLogin">
+        <form className="PLogin" onSubmit={handleCreateAccount}>
                 <label className="login_label">Sign Up</label>
-                <input className="email_input" type="email" placeholder="Enter a valid email"></input>
-                <input className="pass_input" type="password" placeholder="Enter a valid password"></input>
-                <input className="login_input" type="text" placeholder="Enter a valid username"></input>
+                <input className="email_input" onChange={e => setEmail(e.target.value)} type="email" placeholder="Enter a valid email"></input>
+                <input className="pass_input" onChange={e => setPassword(e.target.value)} type="password" placeholder="Enter a valid password"></input>
+                <input className="login_input" onChange={e => setUserNickName(e.target.value)} type="text" placeholder="Enter a valid username"></input>
 
                 <button className="continue">Create account</button>
 
                 <p className="logar">
                     Already have an account?
-                    <button>Login</button>
+                    <a href="/">Login</a>
                 </p>
-        </div>
+        </form>
 
         </>
     );

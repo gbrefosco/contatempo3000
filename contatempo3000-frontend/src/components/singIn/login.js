@@ -18,7 +18,7 @@ export default function Login(){
 
                 <p className="signUp">
                     Don't have an account?
-                    <button>Sign Up</button>
+                    <a href="/singup">Sign Up</a>
                 </p>
             </div>
         </div>
