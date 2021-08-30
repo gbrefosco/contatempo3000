@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import api from '../../services/api';
+import { useHistory } from 'react-router-dom';
 import './login.css';
 
 export default function Login() {
 
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const history = useHistory();
 
     async function handleSubmitNewUser(event) {
         event.preventDefault();
@@ -14,7 +17,7 @@ export default function Login() {
         if (loginData.data.length > 0) {
             const loginDataDetails = loginData.data[0];
             if (loginDataDetails.password === password) {
-                return true;
+                history.push('/home');
             } else {
                 alert('incorrect password');
             }
