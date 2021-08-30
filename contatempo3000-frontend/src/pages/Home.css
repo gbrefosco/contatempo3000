@@ -52,3 +52,14 @@
     color: #4e16c0;
     align-items: center;
 }
+
+.projectsSelection {
+    font-size: 16px;
+    border: 2px solid #9f9ea1;
+    border-radius: 5px;
+    width: 100%;
+    padding: 16px;
+    text-decoration: none;
+    font-weight: normal;
+    margin-bottom: 10px;
+}

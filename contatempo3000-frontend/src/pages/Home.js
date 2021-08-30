@@ -50,7 +50,7 @@ export default function Home() {
 
     const body = (
         <div style={modalStyle} className={classes.paper}>
-            <form>
+            <form className="projectsSelection">
                 <label>
                     Select your project:
                     <select>
