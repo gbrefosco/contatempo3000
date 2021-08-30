@@ -6,7 +6,6 @@ export default function Login() {
 
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
-    const [route, setRoute] = useState('');
 
     async function handleSubmitNewUser(event) {
         event.preventDefault();
@@ -15,7 +14,7 @@ export default function Login() {
         if (loginData.data.length > 0) {
             const loginDataDetails = loginData.data[0];
             if (loginDataDetails.password === password) {
-                setRoute('/home');
+                return true;
             } else {
                 alert('incorrect password');
             }
@@ -37,7 +36,7 @@ export default function Login() {
                 <input className="pass_input" onChange={e => setPassword(e.target.value)} type="password" placeholder="Type in your password"></input>
                 <a href="www.google.com">Forgot your password?</a>
 
-                <button className="continue"><a href={route}>Continue</a></button>
+                <button className="continue">Continue</button>
 
                 <p className="signUp">
                     Don't have an account?
