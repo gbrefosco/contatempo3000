@@ -1,38 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import api from '../../services/api';
+import { useHistory } from 'react-router-dom';
 import './signup.css';
 
 export default function SignUp(){
 
-    const [emailExists, setEmailExists] = useState([]);
-    const [userExists, setUserExists] = useState([]);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [userNickName, setUserNickName] = useState('');
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const history = useHistory();
 
     async function handleCreateAccount(e) {
         e.preventDefault();
-        await Promise.all([
-            api.get(`/user?email=${email}`).then(response => setEmailExists(response.data)),
-            api.get(`/user?login=${userNickName}`).then(response => setUserExists(response.data)),
-        ]);
 
-        console.log(userExists);
-        console.log(emailExists);
+        const userExists = await api.get(`/user?login=${userNickName}`);
+        const emailExists = await api.get(`/user?email=${email}`);
 
-        if (emailExists.length > 0) {
+        if (emailExists.data.length > 0) {
             alert('This Email is already in use');
-            e.preventDefault();
-        } else if (userExists.length > 0) {
+        } else if (userExists.data.length > 0) {
             alert('This UserName is already in use');
-            e.preventDefault();
-        } /*else {
+        } else {
             api.post('/user', {
                 login: userNickName,
                 email: email,
                 password: password
             });
-        }*/
+            history.push('/');
+        }
         
     }
 
