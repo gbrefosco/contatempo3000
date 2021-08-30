@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Modal, Button, TextField, makeStyles } from '@material-ui/core';
 import api from '../services/api';
 import SideNavMenu from '../components/global/sideNav';
+import Moment from 'moment';
 
 import * as AiIcons from "react-icons/ai";
 
@@ -22,16 +23,16 @@ export default function Home() {
         }
     }));
 
-    const [timer, setTimer] = useState(0.00);
     const [running, setRunning] = useState(false);
 
     const [modalTimeAdd, setModalTimeAdd] = useState(false);
-    const [time, setTime] = useState([]);
+    const [time, setTime] = useState();
+
+    const [editTime, setEditTime] = useState();
 
     const [itemsGrid, setItemsGrid] = useState([]);
 
     const [projects, setProjects] = useState([]);
-    const [clients, setClients] = useState([]);
     
     const [modalStyle] = useState(getModalStyle);
     const classes = useStyles();
@@ -41,30 +42,64 @@ export default function Home() {
     }, [projects]);
 
     useEffect(() => {
-        api.get('/client').then(response => setClients(response.data));
-    }, [clients]);
-
-    useEffect(() => {
-        api.get('/time').then(response => setItemsGrid(response.data));
+        api.get('/time')
+            .then(res => {
+                let newItens = itemsGrid;
+                newItens.push(res.data);
+                setItemsGrid(newItens);
+            });
     }, [itemsGrid]);
+
+    function handleStartChange(value) {
+        if (value.length < 16) return;
+        let start = Moment(value).unix();
+        setEditTime({ ...editTime, start });
+    };
+
+    function handleEndChange(value) {
+        if (value.length < 16) return;
+        let end = Moment(value).unix();
+        setEditTime({ ...editTime, end });
+    };
 
     const body = (
         <div style={modalStyle} className={classes.paper}>
             <form className="projectsSelection">
                 <label>
                     Select your project:
-                    <select>
+                    <select onChange={(e) => setEditTime({ ...editTime, activity: e.target.value })}>
+                        <option>Selecione uma opção:</option>
                         {projects.map(proj => (
                             <option value={proj.id}>{proj.name}</option>
                         ))}
                     </select>
                 </label>
             </form>
-            <TextField id="start" style={{ marginBottom: 8 }} fullWidth label="Start" variant="outlined" />
-            <TextField id="finish" style={{ marginBottom: 8 }} fullWidth label="Finish" variant="outlined" />
-            <TextField id="description" multiline rows={7} style={{ marginBottom: 8, minHeight: 30 }} fullWidth label="Description" variant="outlined" />
-            <Button variant="contained" onClick={handleCloseTimeAdd}>Cancel</Button>
-            <Button variant="contained" onClick={handleCloseTimeAdd}>Complete</Button>
+            <TextField
+                id="start"
+                style={{ marginBottom: 8 }}
+                fullWidth label="Start"
+                variant="outlined"
+                placeholder='Formato: dd/mm/aaaa hh:mm'
+                onChange={(e) => handleStartChange(e.target.value)} />
+            <TextField
+                id="finish"
+                style={{ marginBottom: 8 }}
+                fullWidth label="Finish"
+                variant="outlined"
+                placeholder='Formato: dd/mm/aaaa hh:mm'
+                onChange={(e) => handleEndChange(e.target.value)} />
+            {/*
+            TODO pós MVP
+            <TextField
+                id="description"
+                multiline rows={7}
+                style={{ marginBottom: 8, minHeight: 30 }}
+                fullWidth label="Description"
+                variant="outlined"
+                onChange={() => setEditTime({ ...editTime,  })} /> */}
+            <Button variant="contained" onClick={() => handleCloseTimeAdd(false)}>Cancel</Button>
+            <Button variant="contained" onClick={() => handleCloseTimeAdd(true)}>Complete</Button>
         </div>
     );
 
@@ -76,7 +111,15 @@ export default function Home() {
         setModalTimeAdd(true);
     }
 
-    function handleCloseTimeAdd() {
+    function handleCloseTimeAdd(isSave) {
+        if (isSave) {
+            let newEditTime = { ...editTime, user:localStorage.getItem('userId')};
+            api.post(`/time`, newEditTime)
+                .then(res => {debugger})
+                .catch(err => {debugger});
+        }
+
+
         setModalTimeAdd(false);
     }
 
@@ -127,7 +170,7 @@ export default function Home() {
 
             <Modal
                 open={modalTimeAdd}
-                onClose={handleCloseTimeAdd}
+//                onClose={handleCloseTimeAdd}
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
             >
