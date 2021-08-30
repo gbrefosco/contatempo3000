@@ -22,16 +22,11 @@ export default function Home() {
         }
     }));
 
-    const [timer, setTimer] = useState(0.00);
-    const [running, setRunning] = useState(false);
-
     const [modalTimeAdd, setModalTimeAdd] = useState(false);
-    const [time, setTime] = useState([]);
 
     const [itemsGrid, setItemsGrid] = useState([]);
 
     const [projects, setProjects] = useState([]);
-    const [clients, setClients] = useState([]);
     
     const [modalStyle] = useState(getModalStyle);
     const classes = useStyles();
@@ -39,14 +34,6 @@ export default function Home() {
     useEffect(() => {
         api.get('/activity').then(response => setProjects(response.data));
     }, [projects]);
-
-    useEffect(() => {
-        api.get('/client').then(response => setClients(response.data));
-    }, [clients]);
-
-    useEffect(() => {
-        api.get('/time').then(response => setItemsGrid(response.data));
-    }, [itemsGrid]);
 
     const body = (
         <div style={modalStyle} className={classes.paper}>
@@ -67,10 +54,6 @@ export default function Home() {
             <Button variant="contained" onClick={handleCloseTimeAdd}>Complete</Button>
         </div>
     );
-
-    const stopTimer = () => {
-        setRunning(false);
-    };
 
     const handleAddNewTime = () => {
         setModalTimeAdd(true);
@@ -100,15 +83,6 @@ export default function Home() {
 
             <button className="btn" id="btnNewTime" onClick={handleAddNewTime}>
                 New
-            </button>
-            <button className="btn" id="btnStartTime" onClick={() => setRunning(true)}>
-                Start
-            </button>
-            <button className="btn" id="btnStopTime" onClick={() => stopTimer}>
-                Stop
-            </button>
-            <button className="btn" id="btnFinishTime" onClick={handleAddNewTime}>
-                Finish
             </button>
 
             <div className="grid">
