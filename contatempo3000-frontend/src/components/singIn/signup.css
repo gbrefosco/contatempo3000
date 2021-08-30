@@ -61,7 +61,7 @@
     color: #FFFFFF;
 }
 
-.PLogin .email_login {
+.PLogin .email_input {
     position: absolute;
     width: 70%;
     height: 8%;
@@ -75,12 +75,12 @@
     border-radius: 10px;
 }
 
-.PLogin .login_login {
+.PLogin .login_input {
     position: absolute;
     width: 70%;
     height: 8%;
     margin-right: 30%;
-    margin-top: 40%;
+    margin-top: 50%;
     margin-bottom: 50%;
     margin-left: 20%;
     background: #E5E5E5;
@@ -89,7 +89,7 @@
     border-radius: 10px;
 }
 
-.PLogin .pass_login {
+.PLogin .pass_input {
     position: absolute;
     width: 70%;
     height: 8%;
