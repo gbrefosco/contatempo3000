@@ -17,6 +17,8 @@ export default function Login() {
         if (loginData.data.length > 0) {
             const loginDataDetails = loginData.data[0];
             if (loginDataDetails.password === password) {
+                localStorage.setItem('userId', loginDataDetails.id);
+                localStorage.setItem('login', loginDataDetails.login);
                 history.push('/home');
             } else {
                 alert('incorrect password');
