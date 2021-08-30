@@ -8,30 +8,30 @@
 
 .titulo .title {
     position: absolute;
-    width: 235px;
-    height: 56px;
-    left: 180px;
-    top: 65px;
+    width: 30%;
+    height: 30%;
+    left: 25%;
+    margin-top: 40%;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
-    font-size: 48px;
-    line-height: 56px;
+    font-size: 280%;
+    line-height: 50%;
     text-align: center;
     color: #000000;
 }
 
 .titulo .description {
     position: absolute;
-    width: 562px;
-    height: 148px;
-    left: 40px;
-    top: 215px;
+    width: 40%;
+    height: 30%;
+    left: 15%;
+    margin-top: 5%;
     font-family: Roboto;
     font-style: normal;
     font-weight:lighter;
-    font-size: 36px;
-    line-height: 42px;
+    font-size: 240%;
+    line-height: 50%;
     text-align: center;
     color: #000000;
 }
@@ -40,7 +40,7 @@
     position: absolute;
     width: 50%;
     height: 100%;
-    left: 700px;
+    left: 50%;
     top: 1.5px;
     border-radius: 5px;
     background: #8257E5;
@@ -63,10 +63,10 @@
 
 .PLogin .email_input {
     position: absolute;
-    width: 400px;
-    height: 50px;
-    left: 20.54%;
-    right: 17.52%;
+    width: 70%;
+    height: 8%;
+    margin-left: 20%;
+    margin-right: 30%;
     top: 27%;
     bottom: 57.56%;
     background: #E5E5E5;
@@ -77,12 +77,12 @@
 
 .PLogin .login_input {
     position: absolute;
-    width: 400px;
-    height: 50px;
-    left: 20.54%;
-    right: 17.52%;
-    top: 42%;
-    bottom: 50%;
+    width: 70%;
+    height: 8%;
+    margin-right: 30%;
+    margin-top: 50%;
+    margin-bottom: 50%;
+    margin-left: 20%;
     background: #E5E5E5;
     border: 1.5px solid #2A004B;
     box-sizing: border-box;
@@ -91,12 +91,12 @@
 
 .PLogin .pass_input {
     position: absolute;
-    width: 400px;
-    height: 50px;
-    left: 20.54%;
-    right: 17.52%;
-    top: 57%;
-    bottom: 41.59%;
+    width: 70%;
+    height: 8%;
+    margin-right: 30%;
+    margin-top: 55%;
+    margin-bottom: 5%;
+    margin-left: 20%;
     background: #E5E5E5;
     border: 1.5px solid #2A004B;
     box-sizing: border-box;
