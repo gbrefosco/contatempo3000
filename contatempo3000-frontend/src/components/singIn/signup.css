@@ -64,7 +64,7 @@
 .PLogin .email_singup {
     position: absolute;
     width: 70%;
-    height: 10%;
+    height: 8%;
     margin-left: 20%;
     margin-right: 30%;
     top: 27%;
@@ -78,7 +78,7 @@
 .PLogin .login_singup {
     position: absolute;
     width: 70%;
-    height: 10%;
+    height: 8%;
     margin-right: 30%;
     margin-top: 40%;
     margin-bottom: 50%;
@@ -92,7 +92,7 @@
 .PLogin .pass_singup {
     position: absolute;
     width: 70%;
-    height: 10%;
+    height: 8%;
     margin-right: 30%;
     margin-top: 55%;
     margin-bottom: 5%;
