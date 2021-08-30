@@ -31,7 +31,7 @@ export default function Project() {
     const [newProject, setNewProject] = useState('');
     const [project, setProject] = useState([]);
 
-    const [editProject, setEditProject] = useState([]);
+    const [editProject, setEditProject] = useState();
     const [newEditProject, setNewEditProject] = useState('');
     const [modalAddProject, setModalAddProject] = useState(false);
 
@@ -41,14 +41,27 @@ export default function Project() {
     const bodyAddProject = (
         <div style={modalStyle} className={classes.addProject}>
             <input className="editProjectName"
-                value={editProject[1]}
-                placeholder="Enter the new project name" />
-            <Button variant="contained" onClick={handleCloseAddProject}>Cancel</Button>
-            <Button variant="contained" onClick={handleCloseAddProject}>Save</Button>
+                value={editProject ? editProject.name : ''}
+                placeholder="Enter the new project name"
+                onChange={(e) => setEditProject({ ...editProject, name: e.target.value })}    
+            />
+            <Button variant="contained" onClick={() => handleCloseAddProject(false)}>Cancel</Button>
+            <Button variant="contained" onClick={() => handleCloseAddProject(true)}>Save</Button>
         </div>
-    );
+    )
 
-    function handleCloseAddProject() {
+
+    async function handleCloseAddProject(isSave) {
+        if (isSave) {
+            if (!editProject) return;
+            if (!editProject.id || !editProject.name) return;
+
+            await api.put(`/activity/${editProject.id}/`, { name: editProject.name })
+                .then(() => alert('Editted sucessfully!'))
+                .catch(() => alert('An error ocurred, we are working on it!'))
+                .finally(() => setModalAddProject(false));
+        }
+        
         setModalAddProject(false);
     }
 
@@ -56,8 +69,10 @@ export default function Project() {
         e.preventDefault();
 
         if (newProject) {
+            let userId = localStorage.getItem('userId');
             api.post('/activity', {
-                name: newProject
+                name: newProject,
+                user: userId
             });
 
             setNewProject('');
@@ -102,7 +117,7 @@ export default function Project() {
                         <div className="svgIcon">
                             <AiIcons.AiOutlineEdit onClick={() => {
                                 setModalAddProject(true);
-                                setEditProject([proj.id, proj.name]);
+                                setEditProject({ id: proj.id, name: proj.name});
                             }} />
                         </div>
                     </div>
