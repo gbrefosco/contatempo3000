@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./sideNav.css";
 
 import * as AiIcons from "react-icons/ai";
@@ -6,6 +6,11 @@ import * as AiIcons from "react-icons/ai";
 const SideNavMenu = () => {
 
     const [inactive, setInactive] = useState(false);
+    const [userName, setUserName] = useState(() => {
+        const loginUser = localStorage.getItem('login');
+
+        return loginUser;
+    });
 
     function menuBtnChange() {
         let sidebar = document.querySelector(".sidebar");
@@ -28,7 +33,7 @@ const SideNavMenu = () => {
         <>
             <div class="sidebar" >
                 <div class="logo-details" >
-                    <div class="logo_name" > Hi, TheDukrl </div>
+                    <div class="logo_name" > {userName} </div>
                     <i class='bx bx-menu' id="btn" onClick={closeBtnHandleClick} >
                         <div class="line1" ></div>
                         <div class="line2" ></div>
