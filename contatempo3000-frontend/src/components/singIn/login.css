@@ -1,21 +1,22 @@
 .titulo {
     position: relative;
-
+    width: 50%;
+    height: 100%;
     background: #F7F8FA;
 }
 
 .titulo .title {
     position: absolute;
-    width: 235px;
-    height: 56px;
-    left: 180px;
-    top: 65px;
+    width: 30%;
+    height: 30%;
+    left: 25%;
+    margin-top: 10%;
 
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
-    font-size: 48px;
-    line-height: 56px;
+    font-size: 280%;
+    line-height: 50%;
     text-align: center;
 
     color: #000000;
@@ -40,9 +41,9 @@
 
 .PLogin {
     position: absolute;
-    width: 647px;
+    width: 50%;
     height: 100%;
-    left: 700px;
+    left: 50%;
     float: left;
     background: #8257E5;
 }
@@ -51,15 +52,17 @@
     position: absolute;
     align-content: center;
     top: 15%;
+    font-size: 280%;
 }
 
 .PLogin .login_input {
     position: absolute;
-    width: 400px;
-    left: 20.54%;
-    right: 17.52%;
-    top: 34.02%;
-    bottom: 57.56%;
+    width: 70%;
+    height: 10%;
+    margin-right: 30%;
+    margin-top: 30%;
+    margin-bottom: 50%;
+    margin-left: 20%;
 
     background: #E5E5E5;
     border: 1px solid #2A004B;
@@ -69,11 +72,12 @@
 
 .PLogin .pass_input {
     position: absolute;
-    width: 400px;
-    left: 20.54%;
-    right: 17.52%;
-    top: 50%;
-    bottom: 41.59%;
+    width: 70%;
+    height: 10%;
+    margin-right: 30%;
+    margin-top: 50%;
+    margin-bottom: 50%;
+    margin-left: 20%;
 
     background: #E5E5E5;
     border: 1px solid #2A004B;
@@ -95,9 +99,9 @@
 
 .PLogin a {
     position: absolute;
-    left: 15.52%;
+    left: 20%;
     right: 45.2%;
-    top: 61%;
+    top: 81%;
     bottom: 37.44%;
 
     font-family: Roboto;
