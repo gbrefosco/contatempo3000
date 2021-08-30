@@ -40,8 +40,8 @@
     position: absolute;
     width: 50%;
     height: 100%;
-    left: 50%;
-    top: 1.5px;
+    margin-left: 0%;
+    margin-top: 0;
     border-radius: 5px;
     background: #8257E5;
 }
@@ -61,7 +61,7 @@
     color: #FFFFFF;
 }
 
-.PLogin .email_input {
+.PLogin .email_singup {
     position: absolute;
     width: 70%;
     height: 8%;
@@ -75,12 +75,12 @@
     border-radius: 10px;
 }
 
-.PLogin .login_input {
+.PLogin .login_singup {
     position: absolute;
     width: 70%;
     height: 8%;
     margin-right: 30%;
-    margin-top: 50%;
+    margin-top: 40%;
     margin-bottom: 50%;
     margin-left: 20%;
     background: #E5E5E5;
@@ -89,7 +89,7 @@
     border-radius: 10px;
 }
 
-.PLogin .pass_input {
+.PLogin .pass_singup {
     position: absolute;
     width: 70%;
     height: 8%;
@@ -116,10 +116,10 @@
 
 .PLogin .logar {
     position: absolute;
-    left: 17.15%;
-    right: 30%;
-    top: 88.29%;
-    bottom: 9.15%;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 80%;
+    margin-bottom: 0%;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
