@@ -45,9 +45,9 @@ export default function SignUp(){
 
         <form className="PLogin" onSubmit={handleCreateAccount}>
                 <label className="login_label">Sign Up</label>
-                <input className="email_input" onChange={e => setEmail(e.target.value)} type="email" placeholder="Enter a valid email"></input>
-                <input className="pass_input" onChange={e => setPassword(e.target.value)} type="password" placeholder="Enter a valid password"></input>
-                <input className="login_input" onChange={e => setUserNickName(e.target.value)} type="text" placeholder="Enter a valid username"></input>
+                <input className="email_singup" onChange={e => setEmail(e.target.value)} type="email" placeholder="Enter a valid email"></input>
+                <input className="pass_singup" onChange={e => setPassword(e.target.value)} type="password" placeholder="Enter a valid password"></input>
+                <input className="login_singup" onChange={e => setUserNickName(e.target.value)} type="text" placeholder="Enter a valid username"></input>
 
                 <button className="continue">Create account</button>
 
