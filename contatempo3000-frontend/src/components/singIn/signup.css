@@ -61,7 +61,7 @@
     color: #FFFFFF;
 }
 
-.PLogin .email_singup {
+.PLogin .email_login {
     position: absolute;
     width: 70%;
     height: 8%;
@@ -75,7 +75,7 @@
     border-radius: 10px;
 }
 
-.PLogin .login_singup {
+.PLogin .login_login {
     position: absolute;
     width: 70%;
     height: 8%;
@@ -89,7 +89,7 @@
     border-radius: 10px;
 }
 
-.PLogin .pass_singup {
+.PLogin .pass_login {
     position: absolute;
     width: 70%;
     height: 8%;

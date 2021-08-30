@@ -11,9 +11,9 @@ export default function SignUp(){
 
         <div className="PLogin">
                 <label className="login_label">Sign Up</label>
-                <input className="email_singup" type="email" placeholder="Enter a valid email"></input>
-                <input className="pass_singup" type="password" placeholder="Enter a valid password"></input>
-                <input className="login_singup" type="text" placeholder="Enter a valid username"></input>
+                <input className="email_login" type="email" placeholder="Enter a valid email"></input>
+                <input className="pass_login" type="password" placeholder="Enter a valid password"></input>
+                <input className="login_login" type="text" placeholder="Enter a valid username"></input>
 
                 <button className="continue">Create account</button>
 
