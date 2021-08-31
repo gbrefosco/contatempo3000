@@ -14,25 +14,23 @@
 }
 
 .btn {
-    margin-left: 100px;
-    background: #7D53D4;
-    font-weight: bold;
+    margin: 20px;
+    margin-left: 150px;
+    /* width: 175px; */
+    /* height: 52px; */
+    /* left: 18%; */
+    /* top: 30%; */
+    background: linear-gradient(#7D53D4, #4110a1, #200358);
+    /* font-weight: bold; */
+    /* font-size: 16px; */
     color: white;
-    border-radius: 5px;
-    width: 100%;
-    padding: 24px;
-    display: flex;
-    flex: 1;
-    text-decoration: none;
-    font-weight: normal;
-    margin-bottom: 5px;
-    max-width: 300px;
-    margin-top: 80px;
-    font-size: 18px;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 .grid {
-    margin-top: 80px;
+    margin-top: 50px;
     max-width: 700px;
     border-radius: 5px;
 }
@@ -50,12 +48,18 @@
     text-decoration: none;
     font-weight: normal;
     margin-bottom: 5px;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .svgIcon {
     margin-left: auto;
     color: #4e16c0;
     align-items: center;
+}
+
+.cardItem {
+    padding: 10px;
 }
 
 .projectsSelection {
