@@ -3,6 +3,7 @@ import { Modal, Button, TextField, makeStyles } from '@material-ui/core';
 import api from '../services/api';
 import SideNavMenu from '../components/global/sideNav';
 import Moment from 'moment';
+import Helper from '../services/generalHelper';
 
 import * as AiIcons from "react-icons/ai";
 
@@ -23,17 +24,10 @@ export default function Home() {
         }
     }));
 
-    const [running, setRunning] = useState(false);
-
     const [modalTimeAdd, setModalTimeAdd] = useState(false);
-    const [time, setTime] = useState();
-
     const [editTime, setEditTime] = useState();
-
     const [itemsGrid, setItemsGrid] = useState([]);
-
     const [projects, setProjects] = useState([]);
-    
     const [modalStyle] = useState(getModalStyle);
     const classes = useStyles();
 
@@ -41,14 +35,30 @@ export default function Home() {
         api.get('/activity').then(response => setProjects(response.data));
     }, [projects]);
 
-    useEffect(() => {
-        api.get('/time')
-            .then(res => {
-                let newItens = itemsGrid;
-                newItens.push(res.data);
-                setItemsGrid(newItens);
-            });
-    }, [itemsGrid]);
+    function loadTimes() {
+        api.get(`/time?user=${localStorage.getItem('userId')}`)
+            .then(res => setItemsGrid(res.data));
+    };
+
+    const handleAddNewTime = () => {
+        setModalTimeAdd(true);
+    }
+
+    function handleCloseTimeAdd(isSave) {
+        if (isSave) {
+            let newEditTime = { ...editTime, user: localStorage.getItem('userId') };
+            api.post(`/time`, newEditTime)
+                .then(res => loadTimes())
+                .catch(err => alert(err));
+        }
+        setModalTimeAdd(false);
+    }
+    
+    function handleTimeDelete(timeId) {
+        api.delete(`/time/${timeId}`)
+            .then(() => loadTimes())
+            .catch((err) => alert('Error, try again later!'));
+    }
 
     function handleStartChange(value) {
         if (value.length < 16) return;
@@ -60,6 +70,17 @@ export default function Home() {
         if (value.length < 16) return;
         let end = Moment(value).unix();
         setEditTime({ ...editTime, end });
+    };
+
+    function getModalStyle() {
+        const top = 50;
+        const left = 50;
+
+        return {
+            top: `${top}%`,
+            left: `${left}%`,
+            transform: `translate(-${top}%, -${left}%)`,
+        };
     };
 
     const body = (
@@ -103,37 +124,6 @@ export default function Home() {
         </div>
     );
 
-    const stopTimer = () => {
-        setRunning(false);
-    };
-
-    const handleAddNewTime = () => {
-        setModalTimeAdd(true);
-    }
-
-    function handleCloseTimeAdd(isSave) {
-        if (isSave) {
-            let newEditTime = { ...editTime, user:localStorage.getItem('userId')};
-            api.post(`/time`, newEditTime)
-                .then(res => {debugger})
-                .catch(err => {debugger});
-        }
-
-
-        setModalTimeAdd(false);
-    }
-
-    function getModalStyle() {
-        const top = 50;
-        const left = 50;
-
-        return {
-            top: `${top}%`,
-            left: `${left}%`,
-            transform: `translate(-${top}%, -${left}%)`,
-        };
-    }
-
     return (
         <>
             <SideNavMenu />
@@ -144,33 +134,23 @@ export default function Home() {
             <button className="btn" id="btnNewTime" onClick={handleAddNewTime}>
                 New
             </button>
-            <button className="btn" id="btnStartTime" onClick={() => setRunning(true)}>
-                Start
-            </button>
-            <button className="btn" id="btnStopTime" onClick={() => stopTimer}>
-                Stop
-            </button>
-            <button className="btn" id="btnFinishTime" onClick={handleAddNewTime}>
-                Finish
-            </button>
 
             <div className="grid">
-                {itemsGrid.map(item => (
+                {!!itemsGrid && itemsGrid.map(item => (
                     <div className="item">
-                    <strong>{item.start} - {item.end}</strong>
-                    <strong>{item.activity}</strong>
-                    <div className="svgIcon">
-                        <AiIcons.AiOutlineEye />
-                        <AiIcons.AiOutlineDelete />
-                        <AiIcons.AiOutlineEdit />
+                        <strong>{Helper.parseTimestamp(item.start, 'DD/MM/YYYY HH:mm')} - {Helper.parseTimestamp(item.end, 'DD/MM/YYYY HH:mm')}</strong>
+                        <strong>{!!item.activity ? item.activity.name : ''}</strong>
+                        <div className="svgIcon">
+                            <AiIcons.AiOutlineDelete onClick={() => handleTimeDelete(item.id)}/>
+                            {/* <AiIcons.AiOutlineEdit onClick={() => handleEditTime(item.id)} />*/} {/*pós MVP*/}
+                        </div>
                     </div>
-                </div>
                 ))}
             </div>
 
             <Modal
                 open={modalTimeAdd}
-//                onClose={handleCloseTimeAdd}
+                onClose={handleCloseTimeAdd}
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
             >
