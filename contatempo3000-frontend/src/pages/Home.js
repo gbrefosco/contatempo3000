@@ -31,10 +31,6 @@ export default function Home() {
     const [modalStyle] = useState(getModalStyle);
     const classes = useStyles();
 
-    useEffect(() => {
-        api.get('/activity').then(response => setProjects(response.data));
-    }, [projects]);
-
     function loadTimes() {
         api.get(`/time?user=${localStorage.getItem('userId')}`)
             .then(res => setItemsGrid(res.data));
@@ -82,6 +78,14 @@ export default function Home() {
             transform: `translate(-${top}%, -${left}%)`,
         };
     };
+
+    useEffect(() => {
+        api.get('/activity').then(response => setProjects(response.data));
+    }, [projects]);
+
+    useEffect(() => {
+        loadTimes();
+    }, [])
 
     const body = (
         <div style={modalStyle} className={classes.paper}>
@@ -131,15 +135,25 @@ export default function Home() {
                 {date.toDateString()}
             </div>
 
-            <button className="btn" id="btnNewTime" onClick={handleAddNewTime}>
-                New
-            </button>
+            <div style={{ alignItems: 'center', justifyContent: 'space-evenly' }}>
+                <button className="btn" id="btnNewTime" onClick={handleAddNewTime}>
+                    <AiIcons.AiOutlinePlusCircle style={{ fontSize: '45px', margin: '20px' }}/>
+                </button>
+                <strong>Add New Time</strong>
+            </div>
 
             <div className="grid">
+                {!!itemsGrid && (
+                    <div style={{ marginLeft: '100px', marginBottom: '20px' }}>
+                        <strong>
+                            Tempo total: {Helper.getTotalTime(itemsGrid)} minutos.
+                        </strong>
+                    </div>
+                )}
                 {!!itemsGrid && itemsGrid.map(item => (
                     <div className="item">
-                        <strong>{Helper.parseTimestamp(item.start, 'DD/MM/YYYY HH:mm')} - {Helper.parseTimestamp(item.end, 'DD/MM/YYYY HH:mm')}</strong>
-                        <strong>{!!item.activity ? item.activity.name : ''}</strong>
+                        <strong className="cardItem">{Helper.parseTimestamp(item.start, 'DD/MM/YYYY HH:mm')} - {Helper.parseTimestamp(item.end, 'DD/MM/YYYY HH:mm')}</strong>
+                        <strong className="cardItem">{!!item.activity ? item.activity.name : ''}</strong>
                         <div className="svgIcon">
                             <AiIcons.AiOutlineDelete onClick={() => handleTimeDelete(item.id)}/>
                             {/* <AiIcons.AiOutlineEdit onClick={() => handleEditTime(item.id)} />*/} {/*pós MVP*/}

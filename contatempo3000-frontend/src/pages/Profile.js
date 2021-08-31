@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import { Modal, Button, TextField, makeStyles } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
+import { makeStyles } from '@material-ui/core';
 import './profile.css';
 import SideNavMenu from '../components/global/sideNav';
+import api from '../services/api';
+import Card from '../components/card/card';
 
 export default function Profile(props) {
 
@@ -17,62 +19,58 @@ export default function Profile(props) {
         }
     }));
 
-    const [modalAddProjectOrClient, setModalAddProjectOrClient] = useState(false);
-    const [modalStyle] = useState(getModalStyle);
-    const classes = useStyles();
+    const [user, setUser] = useState();
 
-    const handleCloseAddProjectOrClient = () => {
-        setModalAddProjectOrClient(false);
-    }
+    function loadUser() {
+        api.get(`/user/${localStorage.getItem('userId')}`)
+            .then(res => {
+                let { data: user } = res;
+                setUser(user);                
+            })
+    };
 
-    function getModalStyle() {
-        const top = 50;
-        const left = 50;
+    useEffect(() => {
+        loadUser();
+    }, []);
 
-        return {
-            top: `${top}%`,
-            left: `${left}%`,
-            transform: `translate(-${top}%, -${left}%)`,
-        };
-    }
-
-    const bodyAddProjectOrClient = (
-        <div style={modalStyle} className={classes.addProjectOrClient}>
-            <TextField id="name" style={{ marginBottom: 8, marginTop: 15 }} fullWidth label="Name" variant="outlined" />
-            <Button variant="contained" onClick={handleCloseAddProjectOrClient}>Cancel</Button>
-            <Button variant="contained" onClick={handleCloseAddProjectOrClient}>Save</Button>
-        </div>
-    );
-
-    return (
+    return !!user && (
         <>
             <SideNavMenu />
-            <div className="prof">
-                Your Profile
-            </div>
 
-            <div style={{ textAlign: 'center', position: 'absolute', left: '45%', top: '50%' }}>
-                <p style={{ color: '#7D53D4', fontSize: '25px' }}>{props.username}</p>
-            </div>
-            <div className="caixa" style={{ textAlign: 'center' }}>
-                <p style={{ color: '#7D53D4', fontSize: '20px' }}>{props.email}</p>
-                <button className="editUserMail" onClick={() => setModalAddProjectOrClient(true)}>editar</button>
-            </div>
-            <div className="caixa" style={{ textAlign: 'center', left: '55%' }}>
-                <p style={{ color: '#7D53D4', fontSize: '20px' }}>{props.password}</p>
-                <button className="editUserPassword" onClick={() => setModalAddProjectOrClient(true)}>editar</button>
-            </div>
-            <button className="caixa" style={{ top: '85%' }}>Your Projects</button>
-            <button className="caixa" style={{ left: '55%', top: '85%' }}>Your Clients</button>
 
-            <Modal
-                open={modalAddProjectOrClient}
-                onClose={handleCloseAddProjectOrClient}
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
-            >
-                {bodyAddProjectOrClient}
-            </Modal>
+            <div className="container">
+
+                <div className="title">
+                    Your Profile
+                </div>
+                <div className="subtitle">
+                    <p>{user.login}</p>
+                </div>
+                <Card>
+                    <p>Código: {user.id}</p>
+                </Card>
+                <Card>
+                    <p>Email: {user.email}</p>
+                </Card>            
+                <Card>
+                    <p>Pergunta secreta: {user.secretQuestion}</p>
+                </Card>            
+                <Card>
+                    <p>Resposta: {user.secretAnswer}</p>
+                </Card>            
+
+                {/* <div style={{ textAlign: 'center', position: 'absolute', left: '45%', top: '50%' }}>
+                    <p style={{ color: '#7D53D4', fontSize: '25px' }}>Código: {user.id}</p>
+                </div>
+                <div style={{ textAlign: 'center', position: 'absolute', left: '45%', top: '50%' }}>
+                    <p style={{ color: '#7D53D4', fontSize: '25px' }}>{user.login}</p>
+                </div>
+                <div style={{ textAlign: 'center', position: 'absolute', left: '45%', top: '50%' }}>
+                    <p style={{ color: '#7D53D4', fontSize: '25px' }}>Email: {user.email}</p>
+                </div> */}
+
+                <button className="caixa" onClick={() => alert('Sua senha é: ' + user.password)} >Mostrar senha</button>
+            </div>
         </>
     );
 }
