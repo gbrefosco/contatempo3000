@@ -34,29 +34,30 @@ export default function SignUp() {
 
     return (
         <>
-            <div className="titulo">
-                <h1 className="title">TascheZeit</h1>
-                <h2 className="description">A simple and pratical time-manager <br /> for those who want to be organized</h2>
-            </div>
-
-            <form className="cadastro" onSubmit={handleCreateAccount}>
-                <div className="login_label">
-                    <label>Sign Up</label>
+            <div className="cadastroUser">
+                <div className="titulo">
+                    <h1 className="title">TascheZeit</h1>
+                    <h2 className="description">A simple and pratical time-manager <br /> for those who want to be organized</h2>
                 </div>
-                <div className="formDiv">
-                    <input className="inputCadastro email_singup" onChange={e => setEmail(e.target.value)} type="email" placeholder="Enter a valid email"></input>
-                    <input className="inputCadastro pass_singup" onChange={e => setPassword(e.target.value)} type="password" placeholder="Enter a valid password"></input>
-                    <input className="inputCadastro login_singup" onChange={e => setUserNickName(e.target.value)} type="text" placeholder="Enter a valid username"></input>
 
-                    <div className="continue">
-                        <button>Create account</button>
+                <form className="cadastro" onSubmit={handleCreateAccount}>
+                    <div className="login_label">
+                        <label>Sign Up</label>
                     </div>
-                    <p className="logar">
-                        Already have an account? <a href="/">Login</a>
-                    </p>
-                </div>
-            </form>
+                    <div className="formDiv">
+                        <input className="inputCadastro email_singup" onChange={e => setEmail(e.target.value)} type="email" placeholder="Enter a valid email"></input>
+                        <input className="inputCadastro pass_singup" onChange={e => setPassword(e.target.value)} type="password" placeholder="Enter a valid password"></input>
+                        <input className="inputCadastro login_singup" onChange={e => setUserNickName(e.target.value)} type="text" placeholder="Enter a valid username"></input>
 
+                        <div className="continue">
+                            <button>Create account</button>
+                        </div>
+                        <p className="logar">
+                            Already have an account? <a href="/">Login</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
         </>
     );
 }
