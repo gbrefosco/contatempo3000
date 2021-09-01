@@ -58,13 +58,13 @@ export default function Home() {
 
     function handleStartChange(value) {
         if (value.length < 16) return;
-        let start = Moment(value).unix();
+        let start = Moment(value, 'DD/MM/YYYY HH:mm').unix();
         setEditTime({ ...editTime, start });
     };
 
     function handleEndChange(value) {
         if (value.length < 16) return;
-        let end = Moment(value).unix();
+        let end = Moment(value, 'DD/MM/YYYY HH:mm').unix();
         setEditTime({ ...editTime, end });
     };
 
