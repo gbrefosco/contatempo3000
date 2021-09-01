@@ -80,7 +80,7 @@ export default function Home() {
     };
 
     useEffect(() => {
-        api.get('/activity').then(response => setProjects(response.data));
+        api.get(`/activity?user=${localStorage.getItem('userId')}`).then(response => setProjects(response.data));
     }, [projects]);
 
     useEffect(() => {

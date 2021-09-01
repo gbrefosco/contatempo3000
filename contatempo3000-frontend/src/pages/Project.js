@@ -91,7 +91,7 @@ export default function Project() {
     }
 
     useEffect(() => {
-        api.get('/activity')
+        api.get(`/activity?user=${localStorage.getItem('userId')}`)
             .then(response => {
                 setProject(response.data);
             });
